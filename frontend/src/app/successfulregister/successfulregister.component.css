@@ -1,0 +1,8 @@
+  img {
+    position: absolute; /* Pozícionálás engedélyezése */
+    top: 50%; /* Függőleges közép */
+    left: 50%; /* Vízszintes közép */
+    transform: translate(-50%, -50%); /* Középpontra igazítás */
+    width: 300px; /* Kép szélessége (opcionális) */
+    height: auto; /* Magasság arányosan igazodik */
+  }
