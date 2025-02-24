@@ -1,0 +1,16 @@
+footer .brand{
+    font-family: var(--lg-font);
+    letter-spacing: 2px;
+}
+
+footer a{
+    transition: color 0.3s ease;
+}
+
+footer a:hover{
+    color: var(--pink)!important;
+}
+
+.text-muted {
+    color: rgba(255, 255, 255, 0.6) !important; /* Halvány fehér */
+}

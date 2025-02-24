@@ -1,0 +1,47 @@
+<div id="registerForm">
+
+
+
+<h1 class="ms-2">Regisztráció</h1>
+
+<form [formGroup]="registerForm" (submit)="register()" class="ms-2">
+
+    <div class="form-group">
+        <span class="input-group-text">Felhasználónév</span>
+        <input type="text" formControlName="name" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+        <span class="input-group-text">E-mail</span>
+        <input type="text" formControlName="email" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+        <span class="input-group-text">Jelszó</span>
+        <input type="password" formControlName="password" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+        <span class="input-group-text">Jelszó újra</span>
+        <input type="password" formControlName="password_confirmation" class="form-control" required>
+    </div>
+
+    <div class="mt-1 ms-1">
+        <p> Regisztrációval elfogadod a feltételeket, adatvédelmi irányelveinket. <a href="#">Feltételek & Adatvédelem</a>.</p>
+    </div>
+    
+    <div>
+        <button type="submit" class="btn btn-primary">Regisztráció</button>
+    </div>
+    
+    <div>
+        <p id="errorMessageFromBackend"></p>
+    </div>
+
+    <div id="errorMessage" class="text-danger"></div>
+    <p class="mt-2 ms-1"> Már van fiókod? <a (click)="navigateToLogin()" style="color: #0056b3; text-decoration: underline; cursor: pointer;">Belépek</a>.</p>
+    
+    
+</form>
+
+</div>

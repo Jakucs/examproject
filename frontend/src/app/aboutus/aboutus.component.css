@@ -1,0 +1,14 @@
+.title h2::before{
+    position: absolute;
+    content: "";
+    width: 4px;
+    height: 50px;
+    background-color: var(--pink);
+    left: -20px;
+    top: 50%;
+    transform: translateY(-50%); /*Ez azt jelenti, hogy az elem teteje az adott konténer közepén kezdődik (de ez még nincs tökéletesen középen, mert az elem saját magassága is számít).*/
+}
+
+p {
+    background-color: rgba(0, 0, 0, 0.05);
+}
