@@ -7,6 +7,8 @@ import { LogoutComponent } from './logout/logout.component';
 import { ProductsComponent } from './products/products.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { FooterComponent } from './footer/footer.component';
+import { AdminComponent } from './admin/admin.component';
+import { SuperadminComponent } from './superadmin/superadmin.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent, outlet: 'top'},
@@ -17,5 +19,7 @@ export const routes: Routes = [
     { path: 'aboutus', component: AboutusComponent},
     { path: 'footer', component: FooterComponent},
     { path: '', component: AppComponent },
+    { path: 'adminsite', component: AdminComponent, outlet: 'admin'},
+    { path: 'superadminsite', component: SuperadminComponent, outlet: 'admin'},
     { path: '**', redirectTo: '', pathMatch: 'full' }
 ];

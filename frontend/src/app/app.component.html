@@ -102,8 +102,14 @@
 <!--Login Component-->
 <div class="content">
   <router-outlet name="top"></router-outlet>
-  <app-products id="products"></app-products>
-  <app-aboutus id="aboutus"></app-aboutus>
-  <app-footer id="footer"></app-footer>
+
+  @if(!showAdminPage){
+    <app-products id="products"></app-products>
+    <app-aboutus id="aboutus"></app-aboutus>
+    <app-footer id="footer"></app-footer>
+  }@else {
+    <router-outlet name="admin"></router-outlet> <!--(admin:adminsite)-->
+  }
+
 </div>
 

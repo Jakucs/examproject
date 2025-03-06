@@ -1,0 +1,115 @@
+<h1>Admin felület</h1>
+
+<button class="btn btn-secondary ms-3" (click)="navigateToSuperadminsite()">
+    <h2 class="ms-3">Felhasználók kezelése...</h2>
+</button> <br>
+<button class="mt-3 btn btn-secondary ms-3" (click)="toggleTable()">
+    <h2 class="ms-3">Termékek kezelése...</h2>
+</button>
+
+@if(showTable){
+
+
+
+    <div class="ms-3 mt-3">
+    <button  type="button" class="newProduct btn btn-primary" data-bs-toggle="modal" data-bs-target="#operationModal" (click)="startAdd()">
+    <h2>Új termék hozzáadása</h2>
+    </button>
+</div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="operationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">
+            @if(editMode) {
+              Szerkesztés
+            }@else{
+              Hozzáadás
+            }
+
+          </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          
+            <!---Modal ablak body-->
+            <div>
+                <div class="mb-3">
+                  <label for="id" class="form-label">Id</label>
+                  <input type="text" class="form-control" 
+                  id="id" [(ngModel)]="id" readonly>
+                </div>
+                <div class="mb-3">
+                  <label for="name" class="form-label">Termék neve</label>
+                  <input type="text" class="form-control" 
+                  id="name" [(ngModel)]="name">
+                </div>
+                <div class="mb-3">
+                  <label for="city" class="form-label">Termék ára</label>
+                  <input type="text" class="form-control" 
+                  id="city" [(ngModel)]="price">
+                </div>
+                <div class="mb-3">
+                  <label for="salary" class="form-label">Termék értékelése (0-5)</label>
+                  <input type="text" class="form-control" 
+                  id="salary" [(ngModel)]="star">
+                </div>
+            </div>
+
+
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" 
+          data-bs-dismiss="modal">Bezár</button>
+          <button type="button" class="btn btn-primary"
+          data-bs-dismiss="modal"
+          (click)="saveProduct()">Mentés</button>
+        </div>
+      </div>
+    </div>
+  </div>
+            <!---Modal ablak body vége-->
+
+            <!--Termékek lekérése-->
+    <h3 class="ms-3 mt-3">Adatbázisban lévő termékek:</h3>
+
+    <table class="table table-striped ">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Stars</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for(product of productList; track product){
+                <tr>
+                    <td>{{product.id}}</td>
+                    <td>{{product.name}}</td>
+                    <td>{{product.price}}</td>
+                    <td>{{product.star}}</td>
+                    <td>
+                    <button (click)="editProduct(product)"
+                    class="btn btn-primary"
+                    data-bs-toggle="modal" data-bs-target="#operationModal">
+                    <i class="bi bi-pencil"></i>
+                    </button>
+
+                    <button (click)="deleteProduct(product.id)"
+                    class="btn btn-danger ms-2">
+                    <i class="bi bi-trash"></i>
+                    </button>
+                </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+            <!--Termékek lekérése vége-->
+
+}

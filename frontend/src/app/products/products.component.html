@@ -38,18 +38,16 @@
           </div>
 
 
-          <!-- @for(productProperty of productPropertyList; track productProperty){
+          @for(productProperty of productPropertyList; track productProperty.id){
 
           
-          <div class="card" style="width: 18rem;">
-            <img src="images/jiminis5.jpg" class="card-img-top" alt="...">
+          <div class="card mt-3 ms-3" style="width: 18rem;">
+            <img src="images/jiminis5.jpg" class="card-img-top" alt="..."> <!--<---KÉP BETÖLTÉSE-->
             <div class="card-body text-center">
               <div class="rating mt-3">
-                <span class="text-primary"><i class="bi bi-star-fill"></i></span>
-                <span class="text-primary"><i class="bi bi-star-fill"></i></span>
-                <span class="text-primary"><i class="bi bi-star-fill"></i></span>
-                <span class="text-primary"><i class="bi bi-star-fill"></i></span>
-                <span class="text-primary"><i class="bi bi-star-fill"></i></span>
+                  @for(i of generateStarRange(productProperty.star); track i){
+                    <span class="text-primary"><i class="bi bi-star-fill"></i></span>
+                  }
               </div>
               <p class="card-text text-capitalize my-1">{{productProperty.name}}</p>
               <span class="fw-bold">{{productProperty.price}}</span>
@@ -59,7 +57,7 @@
               <button class="btn m-2 text-dark active-filter-btn">Kosárba<i class="bi bi-basket"></i></button>
           </div>
           </div>
-        } -->
+        }
 
 
           <!--<div class="col-md-6 col-lg-4 col-xl-3 p-2">

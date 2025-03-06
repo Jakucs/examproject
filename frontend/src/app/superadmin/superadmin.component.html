@@ -1,0 +1,168 @@
+<h1>SzuperAdmin felület</h1>
+
+
+<div class="ms-3 mt-3 position-relative">
+    <button  type="button" class="newUser btn btn-primary" data-bs-toggle="modal" data-bs-target="#superAdminModal" (click)="startAddAdmin()">
+    <h2>Új admin hozzáadása</h2>
+    </button>
+    <div>
+    <button type="button" class="backToAdmin btn btn-secondary position-absolute top-0 end-0 me-3"  (click)="backToAdmin()">
+      <p>Vissza az adminfelületre</p>
+      </button>
+    </div>
+</div>
+
+              <!-- SUPERADMIN Modal -->
+  <div class="modal fade" id="superAdminModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">
+            Admin hozzáadása
+          </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          
+            <!---SUPERADMIN Modal ablak body-->
+            <div>
+                <div class="mb-3">
+                  <label for="adminId" class="form-label">Id</label>
+                  <input type="text" class="form-control" 
+                  id="adminId" [(ngModel)]="adminId" readonly>
+                </div>
+                <div class="mb-3">
+                  <label for="adminName" class="form-label">Admin neve</label>
+                  <input type="text" class="form-control" 
+                  id="adminName" [(ngModel)]="adminName">
+                </div>
+                <div class="mb-3">
+                  <label for="adminEmail" class="form-label">Admin email címe</label>
+                  <input type="text" class="form-control" 
+                  id="adminEmail" [(ngModel)]="adminEmail">
+                </div>
+                <div class="mb-3">
+                  <label for="adminPassword" class="form-label">Admin jelszava</label>
+                  <input type="text" class="form-control" 
+                  id="adminPassword" [(ngModel)]="adminPassword">
+                </div>
+            </div>
+            
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" 
+          data-bs-dismiss="modal">Bezár</button>
+          <button type="button" class="btn btn-primary"
+          data-bs-dismiss="modal"
+          (click)="saveAdmin()">Mentés</button>
+        </div>
+      </div>
+    </div>
+  </div>
+            <!---SUPERADMIN Modal ablak body vége-->
+
+
+
+
+
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">
+
+          </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          
+            <!---Modal ablak body-->
+            <div>
+                <div class="mb-3">
+                  <label for="userId" class="form-label">Id</label>
+                  <input type="text" class="form-control" 
+                  id="userId" [(ngModel)]="userId" readonly>
+                </div>
+                <div class="mb-3">
+                  <label for="userName" class="form-label">Felhasználó neve</label>
+                  <input type="text" class="form-control" 
+                  id="userName" [(ngModel)]="userName">
+                </div>
+                <div class="mb-3">
+                  <label for="userEmail" class="form-label">Felhasználó email címe</label>
+                  <input type="text" class="form-control" 
+                  id="userEmail" [(ngModel)]="userEmail">
+                </div>
+                <div class="mb-3">
+                  <label for="userPassword" class="form-label">Felhasználó jelszava</label>
+                  <input type="text" class="form-control" 
+                  id="userPassword" [(ngModel)]="userPassword">
+                </div>
+            </div>
+
+
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" 
+          data-bs-dismiss="modal">Bezár</button>
+          <button type="button" class="btn btn-primary"
+          data-bs-dismiss="modal"
+          (click)="updateUser()">Mentés</button>
+        </div>
+      </div>
+    </div>
+  </div>
+            <!---Modal ablak body vége-->
+
+
+
+
+
+
+
+
+
+            <!--Felhasználók-->
+    <h3 class="ms-3 mt-3">Adatbázisban lévő felhasználók:</h3>
+
+    <table class="table table-striped ">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Név</th>
+                <th>Email</th>
+                <th>Jelszó</th>
+                <th>Szerep</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for(user of userList; track user){
+                <tr>
+                    <td>{{user.id}}</td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.password}}</td>
+                    <td>{{user.role}}</td>
+                    <td>
+                    <button (click)="editUser(user)"
+                    class="btn btn-primary"
+                    data-bs-toggle="modal" data-bs-target="#editUserModal">
+                    <i class="bi bi-pencil"></i>
+                    </button>
+
+                    <button (click)="deleteUser(user.id)"
+                    class="btn btn-danger ms-2">
+                    <i class="bi bi-trash"></i>
+                    </button>
+                </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+            <!--Felhasználók lekérése vége-->
+

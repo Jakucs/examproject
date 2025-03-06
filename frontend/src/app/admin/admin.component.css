@@ -1,0 +1,10 @@
+h1{
+        font-size: 3rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        background: linear-gradient(135deg, #ff0000, #000000);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 4px 4px 10px rgba(255, 0, 0, 0.6), 6px 6px 20px rgba(0, 0, 0, 0.1); /* Pirosas és fekete árnyék */
+        text-align: center;
+}

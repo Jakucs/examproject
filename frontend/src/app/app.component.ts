@@ -15,6 +15,7 @@ import { FooterComponent } from './footer/footer.component';
 export class AppComponent {
   title = 'vizsgamunka';
   loggedIn = false;
+  showAdminPage=false; //adminoldal alapértelmezett állása
   selectedLang = 'HU'; // nyelvválasztó dropdown menü alapértelmezett állása
 
   constructor(private authapi: AuthapiService){}
