@@ -26,7 +26,7 @@ export class LoginComponent {
 
   ngOnInit(){
     this.loginForm = this.builder.group({
-      name: new FormControl(''),
+      login: new FormControl(''),
       password: new FormControl('')
     });
     this.loggedIn = this.authapi.isLoggedIn();
@@ -39,7 +39,7 @@ export class LoginComponent {
     this.authapi.login(this.loginForm.value).subscribe({
       next: (data: any) => {
         console.log(data)
-        localStorage.setItem('token', data.data.token)
+        localStorage.setItem('token', data.token)
         this.app.loggedIn = true;
         this.loggedIn = true;
         this.loginForm.reset()

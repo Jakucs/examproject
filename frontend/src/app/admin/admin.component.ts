@@ -18,12 +18,17 @@ export class AdminComponent {
   price!: number;
   star!: number;
 
+  description!: string;
+  category!: string;
+  stock!: boolean;
+
   editMode = false;
 
   constructor(
     private adminapi: AdminapiService,
     private router: Router
   ){}
+
 
   toggleTable(){
     this.showTable = !this.showTable
@@ -55,6 +60,9 @@ export class AdminComponent {
     this.name = ""
     this.price = 0
     this.star = 0
+    this.description = ""
+    this.category = ""
+    this.stock = false;
   }
 
   saveProduct(){
@@ -87,7 +95,10 @@ export class AdminComponent {
       id: this.id,
       name: this.name,
       price: this.price,
-      star: this.star
+      star: this.star,
+      description: this.description,
+      category: this.category,
+      stock: this.stock
     }
     this.adminapi.createProduct(product).subscribe({
       next: (data: any) => {
@@ -115,6 +126,5 @@ export class AdminComponent {
       }
     })
   }
-
 
 }

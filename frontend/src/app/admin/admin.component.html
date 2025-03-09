@@ -48,15 +48,32 @@
                   id="name" [(ngModel)]="name">
                 </div>
                 <div class="mb-3">
-                  <label for="city" class="form-label">Termék ára</label>
+                  <label for="category" class="form-label">Kategória</label>
                   <input type="text" class="form-control" 
-                  id="city" [(ngModel)]="price">
+                  id="category" [(ngModel)]="category">
                 </div>
                 <div class="mb-3">
-                  <label for="salary" class="form-label">Termék értékelése (0-5)</label>
+                  <label for="description" class="form-label">Termék leírása</label>
                   <input type="text" class="form-control" 
-                  id="salary" [(ngModel)]="star">
+                  id="description" [(ngModel)]="description">
                 </div>
+                <div class="mb-3">
+                  <label for="price" class="form-label">Termék ára</label>
+                  <input type="text" class="form-control" 
+                  id="price" [(ngModel)]="price">
+                </div>
+                <div class="mb-3">
+                  <label for="star" class="form-label">Termék értékelése (0-5)</label>
+                  <input type="text" class="form-control" 
+                  id="star" [(ngModel)]="star">
+                </div>
+                <div>
+                  <label for="stock" class="form-label">Termék van-e készleten?</label>
+                  <select class="form-select" [(ngModel)]="stock">
+                  <option [value]="'Igen'">Igen</option>
+                  <option [value]="'Nem'">Nem</option>
+                </select>
+              </div>
             </div>
 
 
