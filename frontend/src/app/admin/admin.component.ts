@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminapiService } from '../shared/adminapi.service';
 import { Router } from '@angular/router';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-admin',
@@ -17,16 +18,18 @@ export class AdminComponent {
   name!: string;
   price!: number;
   star!: number;
-
   description!: string;
   category!: string;
-  stock!: boolean;
+  stock!: number;
+
+  superAdminError: any = false;
 
   editMode = false;
 
   constructor(
     private adminapi: AdminapiService,
-    private router: Router
+    private router: Router,
+    private app: AppComponent
   ){}
 
 
@@ -36,7 +39,12 @@ export class AdminComponent {
 
   navigateToSuperadminsite(){
     console.log("Navigálás...")
-    this.router.navigate([{ outlets: { admin: ['superadminsite'] } }]);
+    const role = localStorage.getItem('role')
+    if(role==='superadmin'){
+      this.router.navigate([{ outlets: { admin: ['superadminsite'] } }]);
+    }else{
+      this.superAdminError = true;
+    }
   }
 
   ngOnInit(){
@@ -62,7 +70,7 @@ export class AdminComponent {
     this.star = 0
     this.description = ""
     this.category = ""
-    this.stock = false;
+    this.stock = 0;
   }
 
   saveProduct(){
@@ -92,10 +100,9 @@ export class AdminComponent {
   addProduct(){
     console.log("Mentés...")
     const product = {
-      id: this.id,
       name: this.name,
       price: this.price,
-      star: this.star,
+      //star: this.star,
       description: this.description,
       category: this.category,
       stock: this.stock

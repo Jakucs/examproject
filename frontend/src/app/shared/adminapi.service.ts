@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class AdminapiService {
 
   constructor(private http: HttpClient) { }
-  productsURL = 'http://localhost:8000/products'
+  productsURL = 'http://localhost:8000/api/products'
   usersURL = 'http://localhost:8000/users'
 
   getProducts(){

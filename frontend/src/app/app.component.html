@@ -75,9 +75,9 @@
   @if(loggedIn){
 
     <h3><i class="bi bi-person-check-fill"></i></h3>
-    <p class="ms-2">Bejelentkezve mint: </p>
+    <p class="ms-2">Bejelentkezve mint: <strong>{{ userName }}</strong></p>
 
-  <button type="button" class="btn btn-primary kilepesgomb" [routerLink]="[{ outlets: { top: ['logout'] } }]">
+  <button type="button" class="btn btn-primary ms-3 kilepesgomb" [routerLink]="[{ outlets: { top: ['logout'] } }]">
     Kilépés
   </button>
 

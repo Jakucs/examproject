@@ -15,13 +15,17 @@ import { FooterComponent } from './footer/footer.component';
 export class AppComponent {
   title = 'vizsgamunka';
   loggedIn = false;
-  showAdminPage=true; //adminoldal alapértelmezett állása
-  selectedLang = 'HU'; // nyelvválasztó dropdown menü alapértelmezett állása
+  showAdminPage: boolean = false; //adminoldal alapértelmezett állása
+  selectedLang = 'HU'; //nyelvválasztó dropdown menü alapértelmezett állása
+  userName: string = ''; //bejelentkezett felhasználó neve alapból ''
 
   constructor(private authapi: AuthapiService){}
 
   ngOnInit(){
-    this.loggedIn = this.authapi.isLoggedIn()
+    this.loggedIn = this.authapi.isLoggedIn();
+    this.userName = this.authapi.getUserName();
+    const role = localStorage.getItem('role')
+    this.showAdminPage = ( role === 'admin' || role === 'superadmin');
   }
 
   changeWord(lang: string){
