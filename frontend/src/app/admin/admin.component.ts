@@ -54,7 +54,7 @@ export class AdminComponent {
   getProducts(){
     this.adminapi.getProducts().subscribe({
       next: (data:any) => {
-        console.log(data)
+        console.log("TERMÉKEK LISTÁJA: ", data) //<--- EZE NEM LÁTOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOM
         this.productList = data;
       },
       error: (error) => {}
@@ -102,7 +102,7 @@ export class AdminComponent {
     const product = {
       name: this.name,
       price: this.price,
-      //star: this.star,
+      star: this.star,
       description: this.description,
       category: this.category,
       stock: this.stock

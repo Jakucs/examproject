@@ -19,7 +19,7 @@ export class AuthapiService {
 
   makeHeader(){
     const token = localStorage.getItem('token');
-    const header = { 'Authorization': 'Bearer' + token }
+    const header = { 'Authorization': 'Bearer ' + token }
     return header;
   }
 
