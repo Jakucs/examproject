@@ -1,0 +1,7 @@
+h1 {
+    text-align: center; /* Középre igazítás */
+    color: #ff4d4d; /* Pirosas szín */
+    text-shadow: 2px 2px 5px black, 4px 4px 10px rgba(0, 0, 0, 0.5); /* Fekete elmosódás */
+    font-size: 2.5rem; /* Nagyobb betűméret */
+    font-weight: bold; /* Félkövér szöveg */
+  }

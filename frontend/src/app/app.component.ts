@@ -4,6 +4,7 @@ import { AuthapiService } from './shared/authapi.service';
 import { ProductsComponent } from './products/products.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { FooterComponent } from './footer/footer.component';
+import { CartapiService } from './shared/cartapi.service';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,10 @@ export class AppComponent {
   selectedLang = 'HU'; //nyelvválasztó dropdown menü alapértelmezett állása
   userName: string = ''; //bejelentkezett felhasználó neve alapból ''
 
-  constructor(private authapi: AuthapiService){}
+  constructor(
+    private authapi: AuthapiService,
+    private cartService: CartapiService
+  ){}
 
   ngOnInit(){
     this.loggedIn = this.authapi.isLoggedIn();
@@ -31,4 +35,9 @@ export class AppComponent {
   changeWord(lang: string){
     this.selectedLang = lang;
   }
+
+  getCartItemCount(): number {
+    return this.cartService.getItemCount();
+  }
+  
 }
