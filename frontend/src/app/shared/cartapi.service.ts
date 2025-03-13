@@ -17,18 +17,27 @@ export class CartapiService {
   }
   
   getCartItems() {
+    console.log(this.cartUrl) //ez most kell
     const headers = this.userApi.makeHeader();
     return this.http.get(this.cartUrl, { headers });
   }
 
   newCartItem(data: any){
+    this.cartItems.push(data);
+    this.saveCartToStorage(); // jelenleg localStorage-ból olvassuk ki hogy hány db termék van a kosárba
     const headers = this.userApi.makeHeader();
     return this.http.post(this.cartUrl, data, { headers })
   }
 
   modifyCartItem(cartItem: any){
-    const url = this.cartUrl + "/" + cartItem
-    return this.http.put(url, cartItem)
+    const headers = this.userApi.makeHeader();
+    return this.http.put(this.cartUrl, cartItem, { headers })
+  }
+
+  modifyCartItemQuantity(cartItemId: number, quantity: number){
+    const url = this.cartUrl + "/" + cartItemId
+    const headers = this.userApi.makeHeader();
+    return this.http.put(url, {quantity: quantity}, { headers })
   }
 
   destroyCartItem(id: number){
@@ -36,7 +45,7 @@ export class CartapiService {
     const url = this.cartUrl + "/" + id
     const headers = this.userApi.makeHeader();
     return this.http.delete(url, { headers });
-  }
+  } //EGYENKÉNT NEM TÖRÖLJÜK A LOCALSTORAGEBÓL A TERMÉKET, EZÉRT MARAD A JELÖLŐSZÁM
 
   destroyAllCart(){
     this.clearCart()
@@ -46,12 +55,10 @@ export class CartapiService {
   }
 
   addItem(item: any) {
-    this.cartItems.push(item);
-    //this.newCartItem(item);
-    this.saveCartToStorage();
+
   }
 
-  getItemCount(): number {
+  getCartItemCount(): number {
     console.log("Kosárban lévő termékek száma: ", this.cartItems.length)
     return this.cartItems.length;
   }

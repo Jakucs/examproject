@@ -12,6 +12,7 @@ import { CartapiService } from '../shared/cartapi.service';
 })
 export class ProductsComponent {
   productPropertyList: any[] = [];
+  activeCategory: string = '*';
 
   constructor(
     private adminapi: AdminapiService,
@@ -48,16 +49,18 @@ export class ProductsComponent {
       this.cartService.newCartItem({ product_id: product.id, quantity: 1 }).subscribe({
         next: (data: any) => {
           console.log("Termék hozzáadva a kosárhoz:", data);
-          this.cartService.addItem(product);
         },
         error: (error) => {
           console.error("Hiba történt a kosárba helyezés során:", error);
-          // Itt megjeleníthetsz egy hibaüzenetet a felhasználónak
         }
       });
     } else {
       console.error("A termék nem tartalmazza az id mezőt.");
-      // Itt megjeleníthetsz egy hibaüzenetet a felhasználónak
     }
   }
+
+  setActiveCategory(category: string){
+    this.activeCategory = category;
+  }
+  
 }

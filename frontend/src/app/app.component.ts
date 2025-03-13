@@ -30,14 +30,19 @@ export class AppComponent {
     this.userName = this.authapi.getUserName();
     const role = localStorage.getItem('role')
     this.showAdminPage = ( role === 'admin' || role === 'superadmin');
+    this.getCartItemCount();
   }
 
   changeWord(lang: string){
     this.selectedLang = lang;
   }
 
-  getCartItemCount(): number {
-    return this.cartService.getItemCount();
+  getUserIdFromLocalStorage() {
+
   }
-  
+
+  getCartItemCount() {
+    return this.cartService.getCartItemCount();
+  }
+  //USER ID-T A LOCALSTORAGE-BA TÁROLJUK JELENLEG! LOGINBA MENTJÜK ODA!
 }

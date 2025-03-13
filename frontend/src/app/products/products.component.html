@@ -9,11 +9,11 @@
   
       <div class="row">
         <div class="d-flex flex-wrap justify-content-center mt-5">
-          <button type="button" class="btn m-2 text-dark active-filter-btn">Összes</button>
-          <button type="button" class="btn m-2 text-dark">Desszert</button>
-          <button type="button" class="btn m-2 text-dark">Fűszerek</button>
-          <button type="button" class="btn m-2 text-dark">Snack</button>
-          <button type="button" class="btn m-2 text-dark">Egyéb</button>
+          <button type="button" class="btn m-2 text-dark" [class.active-filter-btn]="activeCategory === '*'" (click)="setActiveCategory('*')">Összes</button>
+          <button type="button" class="btn m-2 text-dark" [class.active-filter-btn]="activeCategory === 'desserts'" (click)="setActiveCategory('desserts')">Desszert</button>
+          <button type="button" class="btn m-2 text-dark" [class.active-filter-btn]="activeCategory === 'spices'" (click)="setActiveCategory('spices')">Fűszerek</button>
+          <button type="button" class="btn m-2 text-dark" [class.active-filter-btn]="activeCategory === 'snack'" (click)="setActiveCategory('snack')">Snack</button>
+          <button type="button" class="btn m-2 text-dark" [class.active-filter-btn]="activeCategory === 'other'" (click)="setActiveCategory('other')">Egyéb</button>
         </div>
   
         <div class="collection-list mt-4 row">
@@ -40,8 +40,7 @@
 
 
           @for(productProperty of productPropertyList; track productProperty.id){
-
-          
+            @if(activeCategory === '*' || productProperty.category === activeCategory){
           <div class="card mt-3 ms-3" style="width: 18rem;">
             <img src="images/jiminis5.jpg" class="card-img-top" alt="..."> <!--<---KÉP BETÖLTÉSE-->
             <div class="card-body text-center">
@@ -59,26 +58,7 @@
           </div>
           </div>
         }
-
-
-          <!--<div class="col-md-6 col-lg-4 col-xl-3 p-2">
-            <div class="collection-img position-relative">
-              <img src="images/jiminis1.jpg" class="w-100">
-              <span class="position-absolute bg-primary text-white d-flex align-items-center justify-content-center">eladó</span>
-            </div>
-            <div class="text-center">
-              <div class="rating mt-3">
-                <span class="text-primary"><i class="bi bi-star-fill"></i></span>
-                <span class="text-primary"><i class="bi bi-star-fill"></i></span>
-                <span class="text-primary"><i class="bi bi-star-fill"></i></span>
-                <span class="text-primary"><i class="bi bi-star-fill"></i></span>
-                <span class="text-primary"><i class="bi bi-star-fill"></i></span>
-              </div>
-              <p class="text-capitalize my-1">Kurkumás Tücskök</p>
-              <span class="fw-bold">2500 Ft</span>
-            </div>
-          </div>-->
-
+      }
   
         </div>
       </div>

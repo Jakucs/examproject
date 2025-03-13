@@ -40,11 +40,13 @@ export class CartComponent {
         const cartContect = data["Kosár tartalma"];
         this.cartItems = []
         for(let i = 0; i< cartContect.length; i++){
+          const cart_items_id = cartContect[i].id;
           const termek = cartContect[i].product;
           const productHasQuantity = cartContect[i].quantity;
           this.cartItems.push({
             ...termek,
-            quantity: productHasQuantity
+            quantity: productHasQuantity,
+            id: cart_items_id
           });
         }
         console.log("Frissített cartItems:", this.cartItems);
@@ -79,10 +81,26 @@ export class CartComponent {
 
   decrease(cartItem: any){
     cartItem.quantity--;
+    this.cartService.modifyCartItemQuantity(cartItem.id, cartItem.quantity).subscribe({
+      next: (data: any) => {
+        console.log("Kosár mennyisége frissítve:", data);
+      },
+      error: (error) => {
+        console.error("Hiba történt a kosár termék mennyiségének frissítése során:", error);
+      }
+    })
   }
 
   increase(cartItem: any) {
     cartItem.quantity++;
+    this.cartService.modifyCartItemQuantity(cartItem.id, cartItem.quantity).subscribe({
+      next: (data: any) => {
+        console.log("Kosár mennyisége frissítve:", data);
+      },
+      error: (error) => {
+        console.error("Hiba történt a kosár termék mennyiségének frissítése során:", error);
+      }
+    })
   }
 
   /*removeCartItem(cartItem: any){
