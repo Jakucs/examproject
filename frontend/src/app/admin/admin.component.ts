@@ -85,8 +85,11 @@ export class AdminComponent {
     const product = {
       id: this.id,
       name: this.name,
+      category: this.category,
+      description: this.description,
       price: this.price,
-      star: this.star
+      star: this.star,
+      stock: this.stock
     }
 
     this.adminapi.updateProduct(product).subscribe({

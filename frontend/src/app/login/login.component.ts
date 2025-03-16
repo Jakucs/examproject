@@ -42,6 +42,7 @@ export class LoginComponent {
         localStorage.setItem('token', data.token);
         localStorage.setItem('userName', data.user.name);
         localStorage.setItem('role', data.user.role);
+        localStorage.setItem('userId', data.user.id);
         this.app.showAdminPage = (data.user.role === 'admin' || data.user.role === 'superadmin');
         this.app.loggedIn = true;
         this.loggedIn = true;
