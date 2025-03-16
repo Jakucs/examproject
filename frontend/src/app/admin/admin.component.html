@@ -52,8 +52,12 @@
                 </div>
                 <div class="mb-3">
                   <label for="category" class="form-label">Kategória</label>
-                  <input type="text" class="form-control" 
-                  id="category" [(ngModel)]="category">
+                  <select class="form-select" id="category" [(ngModel)]="category">
+                    <option value="desszert">Desszert</option>
+                    <option value="snack">Snack</option>
+                    <option value="spices">Spices</option>
+                    <option value="other">Other</option>
+                  </select>
                 </div>
                 <div class="mb-3">
                   <label for="description" class="form-label">Termék leírása</label>
@@ -67,8 +71,14 @@
                 </div>
                 <div class="mb-3">
                   <label for="star" class="form-label">Termék értékelése (0-5)</label>
-                  <input type="text" class="form-control" 
-                  id="star" [(ngModel)]="star">
+                  <select class="form-select" id="star" [(ngModel)]="star">
+                    <option value="5">5</option>
+                    <option value="4">4</option>
+                    <option value="3">3</option>
+                    <option value="2">2</option>
+                    <option value="1">1</option>
+                    <option value="0">0</option>
+                  </select>
                 </div>
                 <div>
                   <div class="mb-3">

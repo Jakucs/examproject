@@ -80,7 +80,9 @@ export class CartComponent {
   }
 
   decrease(cartItem: any){
-    cartItem.quantity--;
+    if(cartItem.quantity>1){
+      cartItem.quantity--;
+    }
     this.cartService.modifyCartItemQuantity(cartItem.id, cartItem.quantity).subscribe({
       next: (data: any) => {
         console.log("Kosár mennyisége frissítve:", data);
@@ -89,6 +91,7 @@ export class CartComponent {
         console.error("Hiba történt a kosár termék mennyiségének frissítése során:", error);
       }
     })
+
   }
 
   increase(cartItem: any) {
