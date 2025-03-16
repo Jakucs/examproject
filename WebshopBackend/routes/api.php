@@ -6,7 +6,10 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\AuthController; 
 use App\Http\Middelware\RoleMiddleware; 
-use App\Http\Controllers\OrderController;  
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProfileController;  
+use App\Http\Middelware\CheckProfileCompletion;
+
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -48,9 +51,27 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/cart/{cartItem}', [CartController::class, 'update']);
     Route::delete('/cart/{cartItem}', [CartController::class, 'destroy']);
     Route::delete('/cart', [CartController::class, 'clear']);
+    Route::get('/cart-item-count', [CartController::class, 'getCartItemCount']);
 });
 
 //Orders
 Route::middleware('auth:sanctum')->post('/checkout', [OrderController::class, 'checkout']);
 Route::middleware('auth:sanctum')->get('/orders', [OrderController::class, 'getOrders']);
 Route::middleware('auth:sanctum')->put('/orders/{id}/status', [OrderController::class, 'updateOrderStatus']);
+Route::middleware(['auth:sanctum', \App\Http\Middleware\CheckProfileCompletion::class])
+    ->post('/checkout', [OrderController::class, 'checkout']);
+
+    //Így nem működött__
+// Route::middleware([\App\Http\Middleware\CheckProfileCompletion::class])->post('/checkout', [OrderController::class, 'checkout']);
+
+
+
+//Profile
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'show']);
+    Route::put('/profile', [ProfileController::class, 'update']);
+    Route::put('/profile/password', [ProfileController::class, 'updatePassword']);
+    Route::delete('/profile', [ProfileController::class, 'deleteAccount']);
+
+});

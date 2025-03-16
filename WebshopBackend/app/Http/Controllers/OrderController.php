@@ -68,6 +68,11 @@ class OrderController extends Controller
             return response()->json(['message' => 'Hiba történt a rendelés leadásakor.', 'error' => $e->getMessage()], 500);
         }
     }
+//Check profile
+    public function __construct()
+    {
+        $this->middleware('check.profile')->only(['checkout']);
+    }
 
     public function getOrders()
     {

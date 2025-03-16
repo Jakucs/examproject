@@ -19,6 +19,10 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'first_name', 'last_name', 'birth_date',
+        'phone_number',
+        'zip_code', 'city', 'street',
+        'house_number', 'floor', 'door'
     ];
     
     protected $attributes = [

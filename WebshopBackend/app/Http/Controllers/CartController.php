@@ -70,7 +70,7 @@ class CartController extends Controller
     }
 
     public function update(Request $request, $id)
-{
+    {
     
     $cartItem = CartItem::findOrFail($id);
 
@@ -82,12 +82,12 @@ class CartController extends Controller
     $cartItem->update($request->all());
 
     return response()->json($cartItem);
-}
+    }
 
 
 
     public function destroy(CartItem $cartItem)
-{
+    {
     if (Auth::id() !== $cartItem->user_id) {
         return response()->json(['message' => 'Hozzáférés nem engedélyezett!'], 403);
     }
@@ -95,7 +95,7 @@ class CartController extends Controller
     $cartItem->delete();
 
     return response()->json(['message' => 'A terméket töröltük a kosarából!'], 204);
-}
+    }
 
 
 
@@ -104,4 +104,12 @@ class CartController extends Controller
         CartItem::where('user_id', Auth::id())->delete();
         return response()->json(['message' => 'A kosár üres!']);
     }
+
+    public function getCartItemCount()
+    {
+    $count = CartItem::where('user_id', auth()->id())->sum('quantity');
+
+    return response()->json(['count' => $count]);
+    }
+
 }
