@@ -3,11 +3,12 @@ import { AuthapiService } from '../shared/authapi.service';
 import { AppComponent } from '../app.component';
 import { CartapiService } from '../shared/cartapi.service';
 import { FormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [AppComponent, FormsModule],
+  imports: [AppComponent, FormsModule, RouterModule],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css'
 })
@@ -18,7 +19,8 @@ export class CartComponent {
 
   constructor(
     private authapi: AuthapiService, 
-    private cartService: CartapiService
+    private cartService: CartapiService,
+    private router: Router
   ){}
 
   ngOnInit(){
@@ -68,6 +70,7 @@ export class CartComponent {
         this.getCart();
       }
     })
+    this.cartService.fetchCartItemCount()
   }
 
   removeAllCart(){
@@ -77,6 +80,7 @@ export class CartComponent {
         this.getCart();
       }
     })
+    this.cartService.fetchCartItemCount()
   }
 
   decrease(cartItem: any){
@@ -91,7 +95,7 @@ export class CartComponent {
         console.error("Hiba történt a kosár termék mennyiségének frissítése során:", error);
       }
     })
-
+    this.cartService.fetchCartItemCount()
   }
 
   increase(cartItem: any) {
@@ -104,6 +108,11 @@ export class CartComponent {
         console.error("Hiba történt a kosár termék mennyiségének frissítése során:", error);
       }
     })
+    this.cartService.fetchCartItemCount()
+  }
+
+  openOrder() {
+    this.router.navigate([{ outlets: { top: ['order'] } }]);
   }
 
   /*removeCartItem(cartItem: any){

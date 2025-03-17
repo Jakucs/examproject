@@ -12,6 +12,8 @@ import { SuperadminComponent } from './superadmin/superadmin.component';
 import { CartComponent } from './cart/cart.component';
 import { HeaderComponent } from './header/header.component';
 import { ProfilComponent } from './profil/profil.component';
+import { OrderComponent } from './order/order.component';
+import { ChangepasswordComponent } from './changepassword/changepassword.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent, outlet: 'top'},
@@ -19,7 +21,9 @@ export const routes: Routes = [
     { path: 'register', component:  RegisterComponent, outlet: 'top' },
     { path: 'successfulregister', component: SuccessfulregisterComponent, outlet: 'top'},
     { path: 'cart', component: CartComponent, outlet: 'top'},
+    { path: 'order', component: OrderComponent, outlet: 'top'},
     { path: 'profil', component: ProfilComponent, outlet: 'profil'},
+    { path: 'changepassword', component: ChangepasswordComponent, outlet: 'top'},
     { path: 'header', component: HeaderComponent, outlet: 'header'},
     { path: 'products', component: ProductsComponent},
     { path: 'aboutus', component: AboutusComponent},

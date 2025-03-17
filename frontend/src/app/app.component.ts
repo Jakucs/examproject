@@ -7,11 +7,12 @@ import { FooterComponent } from './footer/footer.component';
 import { CartapiService } from './shared/cartapi.service';
 import { HeaderComponent } from "./header/header.component";
 import { ProfilComponent } from './profil/profil.component';
+import { OrderComponent } from './order/order.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, ProductsComponent, AboutusComponent, FooterComponent, HeaderComponent, ProfilComponent],
+  imports: [RouterOutlet, RouterLink, ProductsComponent, AboutusComponent, FooterComponent, HeaderComponent, ProfilComponent, OrderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -39,6 +40,7 @@ export class AppComponent {
     const role = localStorage.getItem('role')
     this.showAdminPage = ( role === 'admin' || role === 'superadmin');
     this.getCartItemCount();
+    this.cartService.fetchCartItemCount();
   }
 
   changeWord(lang: string){
@@ -53,7 +55,6 @@ export class AppComponent {
   getCartItemCount(){
     this.cartService.cartItemCount$.subscribe(count => {
       this.cartItemCount = count; // Automatikus frissítés
-      this.cartService.fetchCartItemCount();
     });
   }
 

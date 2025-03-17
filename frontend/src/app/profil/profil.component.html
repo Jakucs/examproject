@@ -1,37 +1,137 @@
+@if(showProfile){
+
+
 <div>
 
-<h1 class="ms-2"><strong>{{ userName }}</strong> adatai </h1>
+<h1 class="ms-2"><strong>{{ userName }}</strong> rendelési adatok </h1>
 <form [formGroup]="userDataForm">
 
     <div class="form-group">
         <span class="input-group-text ms-1">Felhasználónév</span>
         <input type="text" formControlName="name" class="form-control mb-4 ms-1" readonly>
     </div>
+<!--csak akkor adjuk hozzá az is-invalid osztályt hogyha a : utáni feltétel igaz. Vagyis hogy .invalid: nem ment át a Validáción és .touched már megérintette majd elhagyta.-->
+<!--Tehát az is-invalid classt csak akkor adjuk hozzá, amikor ez a 2 feltétel teljesül.-->
+<!--Ha még nem szerkesztették, vagy még nem értek hozzá, akkor mindkét feltétel false. Nem történik semmi.
+<!-Nem kap is-invalid osztályt, tehát nincs piros keret-->
+<!--Ha a felhasználó beleír egy betűt majd kilép a mezőből, akkor mindkettő true lesz, vagyis az input megkapja az is-invalid osztályt?-->
+<!--A Bootstrap az is-invalid osztályt használja a hibás mezők stílusozására (piros keret, piros szöveg stb.).-->
+<!--DIV -nél, IF-ben ugyanez, ugyanazok a feltételek, a szöveg miatt kell újra ellenőrizni-->
+    <div class="form-group">
+        <span class="input-group-text ms-1">Keresztnév</span>
+        <input type="text" formControlName="first_name" class="form-control mb-4 ms-1"
+            [ngClass]="{'is-invalid': userDataForm.controls['first_name'].invalid && userDataForm.controls['first_name'].touched}">
+            @if(userDataForm.controls['first_name'].invalid && userDataForm.controls['first_name'].touched){
+                <div class="invalid-feedback ms-1">
+                    A keresztnév megadása kötelező!
+                </div>
+            }
+        </div>
 
     <div class="form-group">
-        <span class="input-group-text ms-1">E-mail</span>
-        <input type="text" formControlName="email" class="form-control mb-4 ms-1" readonly>
+        <span class="input-group-text ms-1">Vezetéknév</span>
+        <input type="text" formControlName="last_name" class="form-control mb-4 ms-1"
+        [ngClass]="{'is-invalid': userDataForm.controls['last_name'].invalid && userDataForm.controls['last_name'].touched}">
+        @if(userDataForm.controls['last_name'].invalid && userDataForm.controls['first_name'].touched){
+            <div class="invalid-feedback ms-1">
+                A vezetéknév megadása kötelező
+                </div>
+        }
     </div>
 
     <div class="form-group">
-        <span class="input-group-text ms-1">Jelszó</span>
-        <input type="password" formControlName="password" class="form-control mb-4 ms-1" readonly>
+        <span class="input-group-text ms-1">Születési dátum</span>
+        <input type="date" formControlName="birth_date" class="form-control mb-4 ms-1"
+        [ngClass]="{'is-invalid': userDataForm.controls['birth_date'].invalid && userDataForm.controls['birth_date'].touched}">
+        @if (userDataForm.controls['birth_date'].invalid && userDataForm.controls['birth_date'].touched) {
+            <div class="invalid-feedback ms-1">
+                A születési dátum megadása kötelező
+            </div>
+        }
     </div>
 
     <div class="form-group">
         <span class="input-group-text ms-1">Telefonszám</span>
-        <input type="password" formControlName="password_confirmation" class="form-control mb-4 ms-1" readonly>
+        <input type="tel" formControlName="phone_number" class="form-control mb-4 ms-1"
+        [ngClass]="{'is-invalid': userDataForm.controls['phone_number'].invalid && userDataForm.controls['phone_number'].touched}">
+        @if(userDataForm.controls['phone_number'].invalid && userDataForm.controls['phone_number'].touched){
+            <div class="invalid-feedback ms-1">
+                Telefonszám megadása kötelező
+            </div>
+        }
     </div>
+
+    <div class="form-group">
+        <span class="input-group-text ms-1">irányítószám</span>
+        <input type="number" formControlName="zip_code" class="form-control mb-4 ms-1"
+        [ngClass]="{'is-invalid': userDataForm.controls['zip_code'].invalid && userDataForm.controls['zip_code'].touched}">
+        @if(userDataForm.controls['zip_code'].invalid && userDataForm.controls['zip_code'].touched){
+            <div class="invalid-feedback ms-1">
+                Irányítószám megadása kötelező
+            </div>
+        }
+    </div>
+
+    <div class="form-group">
+        <span class="input-group-text ms-1">Város</span>
+        <input type="text" formControlName="city" class="form-control mb-4 ms-1"
+        [ngClass]="{'is-invalid': userDataForm.controls['city'].invalid && userDataForm.controls['zip_code'].touched}">
+        @if (userDataForm.controls['city'].invalid && userDataForm.controls['city'].touched) {
+            <div class="invalid-feedback ms-1">
+                Város megadása kötelező
+            </div>
+        }
+    </div>
+
+    <div class="form-group">
+        <span class="input-group-text ms-1">Közterület neve / jellege (pl. Üllői út)</span>
+        <input type="text" formControlName="street" class="form-control mb-4 ms-1"
+        [ngClass]="{'is-invalid': userDataForm.controls['street'].invalid && userDataForm.controls['street'].touched}">
+        @if (userDataForm.controls['street'].invalid && userDataForm.controls['street'].touched) {
+            <div class="invalid-feedback ms-1">
+                Közterület megadása kötelező
+            </div>
+        }
+    </div>
+
+    <div class="form-group">
+        <span class="input-group-text ms-1">Házszám</span>
+        <input type="number" formControlName="house_number" class="form-control mb-4 ms-1"
+        [ngClass]="{'is-invalid': userDataForm.controls['house_number'].invalid && userDataForm.controls['house_number'].touched}">
+        @if (userDataForm.controls['house_number'].invalid && userDataForm.controls['house_number'].touched) {
+            <div class="invalid-feedback ms-1">
+                Házszám megadása kötelező
+            </div>
+        }
+    </div>
+    <div class="form-group">
+        <span class="input-group-text ms-1">Emelet</span>
+        <input type="number" formControlName="floor" class="form-control mb-4 ms-1">
+    </div>
+
+    <div class="form-group">
+        <span class="input-group-text ms-1">Ajtó</span>
+        <input type="number" formControlName="door" class="form-control mb-4 ms-1">
+    </div>
+
+    <div class="form-group">
+        <span class="input-group-text ms-1">E-mail</span>
+        <input type="email" formControlName="email" class="form-control mb-4 ms-1">
+    </div>
+
+    <div class="d-flex">
+        <button class="btn btn-primary mb-4 ms-1" (click)="saveData()">
+            Mentés
+        </button>
     
-    <div class="form-group">
-        <span class="input-group-text ms-1">Szállítási cím</span>
-        <input type="password" formControlName="password_confirmation" class="form-control mb-4 ms-1" readonly>
-    </div>
-    <div class="form-group">
-        <span class="input-group-text ms-1">Születési dátum</span>
-        <input type="password" formControlName="password_confirmation" class="form-control mb-4 ms-1" readonly>
+        <button class="btn btn-secondary mb-4 ms-auto" [routerLink]="[{ outlets: { top: ['changepassword'] } }]" (click)="toggleProfile(false)">
+            Jelszó megváltoztatása
+        </button>
     </div>
     
 </form>
 
 </div>
+
+}
+

@@ -57,6 +57,7 @@ export class ProductsComponent {
     } else {
       console.error("A termék nem tartalmazza az id mezőt.");
     }
+    this.cartService.fetchCartItemCount()
   }
 
   setActiveCategory(category: string){
