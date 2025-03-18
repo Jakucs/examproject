@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthapiService } from '../shared/authapi.service';
 import { Router, RouterLink } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +12,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class RegisterComponent {
   registerForm!: FormGroup;
-  errorMessageFromBackend!: any;
 
   constructor(
     private builder: FormBuilder,
@@ -53,7 +51,7 @@ export class RegisterComponent {
       });
   }); //<----INNEN FOLYTASSAM */
 
-  }
+  } 
 
   register(){
     console.log(this.registerForm.value)
@@ -62,20 +60,18 @@ export class RegisterComponent {
         if (response.success){
           console.log("Sikerült a regisztráció! " + response.message)
           this.router.navigate([{outlets: {top: ['successfulregister']}}]);
-        }else{
+        }else{ // <-- olyat nemtudok, hogy kevesebb kóddal az összes hibaüzenetet megjelenítem? map függvény?
           console.log('Nem sikerült a regisztráció', response)
-          this.errorMessageFromBackend = response.message;
-          }
-      },
-      error: (error: HttpErrorResponse) => {
-        console.log('Regisztrációs hiba:', error);
-
-        this.errorMessageFromBackend = `
-        <p>Valós email cím feltétel!</p> <hr> 
-        <p>Jelszó minimum 8 karakter! Kisbetűt és számot is tartalmazzon!</p> <hr> 
-        ${error.error?.message} </br>  
+          const errorMessage = document.getElementById("errorMessageFromBackend");
+          errorMessage!.innerHTML = ` <br>
+           <p> ${response.message} </p> <br>
+           <p> ${response.error.name} </p> <br>
+           <p> ${response.error.password} </p> <br>
+           <p> ${response.error.email} </p> <br>
+           <p> ${response.error.email[0]} </p>
         `
-      }
+          }
+      } //,error...
     })
   }
 
@@ -86,18 +82,3 @@ export class RegisterComponent {
 
 
 }
-
-
-
-/**
- * 
- * 
- * 
- *           this.errorMessageFromBackend = ` <br>
-           <p> ${response.message} </p> <br>
-           <p> ${response.error.name} </p> <br>
-           <p> ${response.error.password} </p> <br>
-           <p> ${response.error.email} </p> <br>
-           <p> ${response.error.email[0]} </p>
-        `
- */

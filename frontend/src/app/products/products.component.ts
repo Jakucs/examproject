@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AdminapiService } from '../shared/adminapi.service';
-import { CartapiService } from '../shared/cartapi.service';
 
 @Component({
   selector: 'app-products',
@@ -12,12 +11,8 @@ import { CartapiService } from '../shared/cartapi.service';
 })
 export class ProductsComponent {
   productPropertyList: any[] = [];
-  activeCategory: string = '*';
 
-  constructor(
-    private adminapi: AdminapiService,
-    private cartService: CartapiService
-  ){}
+  constructor(private adminapi: AdminapiService){}
 
   ngOnInit(){
     this.getProducts()
@@ -28,7 +23,6 @@ export class ProductsComponent {
       next: (data:any) =>{
         console.log(data);
         this.productPropertyList = data;
-        console.log("ProductPropertyListnek tartalmaznia kell a product id-t: ", this.productPropertyList);
       },
       error: (error) => {
         console.log("Hiba a termék betöltésekor: ", error)
@@ -43,25 +37,4 @@ export class ProductsComponent {
     }
     return result;
   }
-
-  addToCart(product: any) {
-    if (product && product.id) {
-      this.cartService.newCartItem({ product_id: product.id, quantity: 1 }).subscribe({
-        next: (data: any) => {
-          console.log("Termék hozzáadva a kosárhoz:", data);
-        },
-        error: (error) => {
-          console.error("Hiba történt a kosárba helyezés során:", error);
-        }
-      });
-    } else {
-      console.error("A termék nem tartalmazza az id mezőt.");
-    }
-    this.cartService.fetchCartItemCount()
-  }
-
-  setActiveCategory(category: string){
-    this.activeCategory = category;
-  }
-  
 }

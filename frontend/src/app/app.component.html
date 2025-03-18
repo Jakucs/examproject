@@ -9,11 +9,9 @@
 
       @if(loggedIn){
 
-      <button type="button" class="btn position-relative" [routerLink]="[{ outlets: { top: ['cart'] } }]" (click)="scrollToTop()">
+      <button type="button" class="btn position-relative">
         <i class="bi bi-basket3-fill"></i>
-        <span class="position-absolute top-0 start-100 translate-middle badge bg-primary">
-          {{ cartItemCount }}
-        </span>
+        <span class="position-absolute top-0 start-100 translate-middle badge bg-primary">5</span>
       </button>
       <button type="button" class="btn position-relative">
         <i class="bi bi-heart-fill"></i>
@@ -48,23 +46,27 @@
     <div class="collapse navbar-collapse order-lg-1" id="navMenu">
       <ul class="navbar-nav mx-auto text-center">
         <li class="nav-item px-2 py-2">
-          <a class="nav-link text-uppercase text-dark" href="#header" (click)="toggleProfile(false)">főoldal</a>
+          <a class="nav-link text-uppercase text-dark" href="#header">főoldal</a>
         </li>
         <li class="nav-item px-2 py-2">
-          <a class="nav-link text-uppercase text-dark" href="#products" (click)="toggleProfile(false)">termékek</a>
+          <a class="nav-link text-uppercase text-dark" href="#products">termékek</a>
         </li>
         <li class="nav-item px-2 py-2">
-          <a class="nav-link text-uppercase text-dark" href="#aboutus" (click)="toggleProfile(false)">rólunk</a>
+          <a class="nav-link text-uppercase text-dark" href="#aboutus">rólunk</a>
         </li>
         <li class="nav-item px-2 py-2">
-          <a class="nav-link text-uppercase text-dark" href="#profil" (click)="toggleProfile(true)" (click)="scrollToTop()">profilom</a>
+          <a class="nav-link text-uppercase text-dark" href="#speacial">speciális</a>
+        </li>
+        <li class="nav-item px-2 py-2 border-0">
+          <a class="nav-link text-uppercase text-dark" href="#popular">népszerű</a>
+        </li>
       </ul>
     </div>
     </div>
 
     @if(!loggedIn){
 
-    <button type="button" class="btn btn-primary belepesgomb" [routerLink]="[{ outlets: { top: ['login'] } }]" (click)="scrollToTop()">
+    <button type="button" class="btn btn-primary belepesgomb" [routerLink]="[{ outlets: { top: ['login'] } }]">
       Belépés
     </button>
 
@@ -73,9 +75,9 @@
   @if(loggedIn){
 
     <h3><i class="bi bi-person-check-fill"></i></h3>
-    <p class="ms-2">Bejelentkezve mint: <strong>{{ userName }}</strong></p>
+    <p class="ms-2">Bejelentkezve mint: </p>
 
-  <button type="button" class="btn btn-primary ms-3 kilepesgomb" [routerLink]="[{ outlets: { top: ['logout'] } }]" (click)="toggleProfile(false)">
+  <button type="button" class="btn btn-primary kilepesgomb" [routerLink]="[{ outlets: { top: ['logout'] } }]">
     Kilépés
   </button>
 
@@ -99,15 +101,9 @@
 
 <!--Login Component-->
 <div class="content">
-  
   <router-outlet name="top"></router-outlet>
 
-  @if(showProfile){
-  <app-profil id="profil"></app-profil>
-  }
-
   @if(!showAdminPage){
-    <app-header id="header"></app-header>
     <app-products id="products"></app-products>
     <app-aboutus id="aboutus"></app-aboutus>
     <app-footer id="footer"></app-footer>

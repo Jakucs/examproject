@@ -13,13 +13,9 @@ export class AuthapiService {
     return !!token;
   }
 
-  getUserName() {
-    return localStorage.getItem('userName') || '';
-  }
-
   makeHeader(){
     const token = localStorage.getItem('token');
-    const header = { 'Authorization': 'Bearer ' + token }
+    const header = { 'Authorization': 'Bearer' + token }
     return header;
   }
 

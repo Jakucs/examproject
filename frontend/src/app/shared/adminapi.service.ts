@@ -1,62 +1,52 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AuthapiService } from './authapi.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminapiService {
 
-  constructor(
-    private http: HttpClient,
-    private authapi: AuthapiService
-  ) { }
-  productsURL = 'http://localhost:8000/api/products'
-  usersURL = 'http://localhost:8000/api/users'
-  setAdminURL = 'http://localhost:8000/api/set-admin'
+  constructor(private http: HttpClient) { }
+  productsURL = 'http://localhost:8000/products'
+  usersURL = 'http://localhost:8000/users'
 
   getProducts(){
     return this.http.get(this.productsURL)
   }
 
   createProduct(data: any){
-    const headers = this.authapi.makeHeader();
-    return this.http.post(this.productsURL, data, { headers })
+    const url = this.productsURL + "newproduct"
+    return this.http.post(this.productsURL, data)
   }
 
   updateProduct(product: any){
-    const headers = this.authapi.makeHeader();
-    const url = this.productsURL + "/" + product.id
-    return this.http.put(url, product, { headers })
+    const url = this.productsURL + "/" + product.id;
+    return this.http.put(url, product);
   }
 
   deleteProduct(id: number){
-    const headers = this.authapi.makeHeader();
     const url = this.productsURL + "/" + id;
-    return this.http.delete(url, { headers })
+    return this.http.delete(url)
   }
 
 
 
   getUsers(){
-    const headers = this.authapi.makeHeader();
-    return this.http.get(this.usersURL, { headers });
+    return this.http.get(this.usersURL);
   }
 
   createAdmin(data: any){
-    const headers = this.authapi.makeHeader();
-    return this.http.post(this.setAdminURL, data, { headers })
+    const url = this.usersURL
+    return this.http.post(this.usersURL, data)
   }
 
   updateUser(user: any){
-    const headers = this.authapi.makeHeader();
     const url = this.usersURL + "/" + user.id;
-    return this.http.put(url, user, { headers })
+    return this.http.put(url, user)
   }
 
   deleteUser(id: number){
-    const headers = this.authapi.makeHeader();
     const url = this.usersURL + "/" + id;
-    return this.http.delete(url, { headers })
+    return this.http.delete(url)
   }
 }

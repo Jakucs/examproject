@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import {FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminapiService } from '../shared/adminapi.service';
 import { Router } from '@angular/router';
-import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-admin',
@@ -18,20 +17,13 @@ export class AdminComponent {
   name!: string;
   price!: number;
   star!: number;
-  description!: string;
-  category!: string;
-  stock!: number;
-
-  superAdminError: any = false;
 
   editMode = false;
 
   constructor(
     private adminapi: AdminapiService,
-    private router: Router,
-    private app: AppComponent
+    private router: Router
   ){}
-
 
   toggleTable(){
     this.showTable = !this.showTable
@@ -39,12 +31,7 @@ export class AdminComponent {
 
   navigateToSuperadminsite(){
     console.log("Navigálás...")
-    const role = localStorage.getItem('role')
-    if(role==='superadmin'){
-      this.router.navigate([{ outlets: { admin: ['superadminsite'] } }]);
-    }else{
-      this.superAdminError = true;
-    }
+    this.router.navigate([{ outlets: { admin: ['superadminsite'] } }]);
   }
 
   ngOnInit(){
@@ -54,7 +41,7 @@ export class AdminComponent {
   getProducts(){
     this.adminapi.getProducts().subscribe({
       next: (data:any) => {
-        console.log("TERMÉKEK LISTÁJA: ", data) //<--- EZE NEM LÁTOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOM
+        console.log(data)
         this.productList = data;
       },
       error: (error) => {}
@@ -68,9 +55,6 @@ export class AdminComponent {
     this.name = ""
     this.price = 0
     this.star = 0
-    this.description = ""
-    this.category = ""
-    this.stock = 0;
   }
 
   saveProduct(){
@@ -85,11 +69,8 @@ export class AdminComponent {
     const product = {
       id: this.id,
       name: this.name,
-      category: this.category,
-      description: this.description,
       price: this.price,
-      star: this.star,
-      stock: this.stock
+      star: this.star
     }
 
     this.adminapi.updateProduct(product).subscribe({
@@ -103,12 +84,10 @@ export class AdminComponent {
   addProduct(){
     console.log("Mentés...")
     const product = {
+      id: this.id,
       name: this.name,
       price: this.price,
-      star: this.star,
-      description: this.description,
-      category: this.category,
-      stock: this.stock
+      star: this.star
     }
     this.adminapi.createProduct(product).subscribe({
       next: (data: any) => {
@@ -136,5 +115,6 @@ export class AdminComponent {
       }
     })
   }
+
 
 }

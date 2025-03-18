@@ -34,8 +34,8 @@ export class SuperadminComponent {
   getUsers(){
     this.adminapi.getUsers().subscribe({
       next: (data:any) => {
+        console.log(data)
         this.userList = data;
-        console.log(this.userList)
       },
       error: (error) => {}
     })

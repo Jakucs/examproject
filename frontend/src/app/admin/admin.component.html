@@ -6,9 +6,6 @@
 <button class="mt-3 btn btn-secondary ms-3" (click)="toggleTable()">
     <h2 class="ms-3">Termékek kezelése...</h2>
 </button>
-@if(superAdminError){
-<h1 class="ms-3 mt-3">Nem vagy szuperadmin! Nincs jogosultságod felhasználókat kezelni!</h1>
-}
 
 @if(showTable){
 
@@ -51,42 +48,15 @@
                   id="name" [(ngModel)]="name">
                 </div>
                 <div class="mb-3">
-                  <label for="category" class="form-label">Kategória</label>
-                  <select class="form-select" id="category" [(ngModel)]="category">
-                    <option value="desszert">Desszert</option>
-                    <option value="snack">Snack</option>
-                    <option value="spices">Spices</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-                <div class="mb-3">
-                  <label for="description" class="form-label">Termék leírása</label>
+                  <label for="city" class="form-label">Termék ára</label>
                   <input type="text" class="form-control" 
-                  id="description" [(ngModel)]="description">
+                  id="city" [(ngModel)]="price">
                 </div>
                 <div class="mb-3">
-                  <label for="price" class="form-label">Termék ára</label>
+                  <label for="salary" class="form-label">Termék értékelése (0-5)</label>
                   <input type="text" class="form-control" 
-                  id="price" [(ngModel)]="price">
+                  id="salary" [(ngModel)]="star">
                 </div>
-                <div class="mb-3">
-                  <label for="star" class="form-label">Termék értékelése (0-5)</label>
-                  <select class="form-select" id="star" [(ngModel)]="star">
-                    <option value="5">5</option>
-                    <option value="4">4</option>
-                    <option value="3">3</option>
-                    <option value="2">2</option>
-                    <option value="1">1</option>
-                    <option value="0">0</option>
-                  </select>
-                </div>
-                <div>
-                  <div class="mb-3">
-                    <label for="stock" class="form-label">Készlet</label>
-                    <input type="text" class="form-control"
-                    id="stock" [(ngModel)]="stock">
-                  </div>
-              </div>
             </div>
 
 
