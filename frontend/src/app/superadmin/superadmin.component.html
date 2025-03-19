@@ -1,4 +1,4 @@
-<h1>SzuperAdmin felület</h1>
+<h1>Felhasználók kezelése</h1>
 
 
 <div class="ms-3 mt-3 position-relative">
@@ -141,7 +141,7 @@
             </tr>
         </thead>
         <tbody>
-            @for(user of userList; track user){
+            @for(user of userList; track user;){
                 <tr>
                     <td>{{user.id}}</td>
                     <td>{{user.name}}</td>

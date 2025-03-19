@@ -1,0 +1,105 @@
+<h1><strong>{{ userName }}</strong> kosarának tartalma</h1>
+
+<!--<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">-->
+
+@if(cartItems.length > 0){
+
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-8">
+            <!--Kosár elemek-->
+            <div class="card mb-4">
+                <div class="card-body">
+
+
+
+                @for(cartItem of cartItems; track cartItem;){
+                        <div class="row cart-item mb-3">
+                            <div class="col-md-3">
+                                <img src="images/jiminis1.jpg" class="card-img-top" alt="...">
+                            </div>
+                            <div class="col-md-5">
+                                <h5 class="card-title">{{cartItem.name}}</h5>
+                                <p class="text-muted">{{cartItem.category}}</p>
+                            </div>
+                            <div class="col-md-2">
+
+                                <div class="input-group">
+                                    <button class="btn btn-outline-secondary btn-sm" type="button" (click)="decrease(cartItem)">-</button>
+                                    <input style="max-width:100px" type="text" class="form-control  form-control-sm text-center quantity" [value]="cartItem.quantity">
+                                    <button class="btn btn-outline-secondary btn-sm" type="button" (click)="increase(cartItem)">+</button>
+                                </div>
+
+                            </div>
+                            <div class="col-md-2 text-end">
+                                <p class="fw-bold">${{cartItem.price}}</p>
+                                <button class="btn btn-sm btn-outline-danger" (click)="removeFromCart(cartItem.id)">
+                                        <i class="bi bi-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    <hr>
+                    }
+
+
+                </div>
+            </div>
+            <!-- Vissza a főoldalra  -->
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div class="text-start mb-4">
+                    <a href="app.component.html" class="btn btn-outline-primary">
+                        <i class="bi bi-arrow-left me-2"></i>Vásárlás folytatása
+                    </a>
+                </div>
+                <!-- Kosár teljes törlése -->
+                <div class="text-start mb-4">
+                    <button class="btn btn-danger" (click)="removeAllCart()">
+                        <i class="me-2"></i>Kosár törlése
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <!-- Rendelés összefoglalás -->
+            <div class="card cart-summary">
+                <div class="card-body">
+                    <h5 class="card-title mb-4">Rendelés összefoglalás</h5>
+                    <div class="d-flex justify-content-between mb-3">
+                        <span>Összesen</span>
+                        <span>${{overAmount}}</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-3">
+                        <span>Szállítás</span>
+                        <span>$10.00</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-3">
+                        <span>Kedvezmény</span>
+                        <span>- $10.00</span>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between mb-4">
+                        <strong>Összesen</strong>
+                        <strong>${{overAmount}}</strong>
+                    </div>
+                    <button class="btn btn-primary w-100" (click)="openOrder()">Rendelés leadása</button>
+                </div>
+            </div>
+            <!-- Promo Code -->
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h5 class="card-title mb-3">Promóciós kód</h5>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Írd be a promóciós kódot">
+                        <button class="btn btn-outline-secondary" type="button">Bevitel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+}@else {
+    <h1 class="mt-3">A kosarad jelenleg üres</h1>
+}

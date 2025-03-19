@@ -6,6 +6,9 @@
 <button class="mt-3 btn btn-secondary ms-3" (click)="toggleTable()">
     <h2 class="ms-3">Termékek kezelése...</h2>
 </button>
+@if(AdminError){
+<h1 class="ms-3 mt-3">Nem vagy szuperadmin! Nincs jogosultságod felhasználókat kezelni!</h1>
+}
 
 @if(showTable){
 
@@ -48,15 +51,50 @@
                   id="name" [(ngModel)]="name">
                 </div>
                 <div class="mb-3">
-                  <label for="city" class="form-label">Termék ára</label>
-                  <input type="text" class="form-control" 
-                  id="city" [(ngModel)]="price">
+                  <label for="category" class="form-label">Kategória</label>
+                  <select class="form-select" id="category" [(ngModel)]="category">
+                    <option value="mealworm">Lisztkukac</option>
+                    <option value="cricket">Tücskök</option>
+                    <option value="grasshopper">Szöcskék</option>
+                    <option value="dessert">Desszert</option>
+                    <option value="other">Egyéb</option>
+                  </select>
                 </div>
                 <div class="mb-3">
-                  <label for="salary" class="form-label">Termék értékelése (0-5)</label>
+                  <label for="description" class="form-label">Termék leírása</label>
                   <input type="text" class="form-control" 
-                  id="salary" [(ngModel)]="star">
+                  id="description" [(ngModel)]="description">
                 </div>
+                <div class="mb-3">
+                  <label for="price" class="form-label">Termék ára</label>
+                  <input type="text" class="form-control" 
+                  id="price" [(ngModel)]="price">
+                </div>
+                <div class="mb-3">
+                  <label for="stars" class="form-label">Termék értékelése (0-5)</label>
+                  <select class="form-select" id="stars" [(ngModel)]="stars">
+                    <option value="5">5</option>
+                    <option value="4">4</option>
+                    <option value="3">3</option>
+                    <option value="2">2</option>
+                    <option value="1">1</option>
+                    <option value="0">0</option>
+                  </select>
+                </div>
+                <div>
+                  <div class="mb-3">
+                    <label for="stock" class="form-label">Készlet</label>
+                    <input type="text" class="form-control"
+                    id="stock" [(ngModel)]="stock">
+                  </div>
+              </div>
+              <div>
+                <div class="mb-3">
+                  <label for="image" class="form-label">Kép URL</label>
+                  <input type="text" class="form-control"
+                  id="image" [(ngModel)]="image">
+                </div>
+            </div>
             </div>
 
 
@@ -82,18 +120,22 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Stars</th>
+                <th>Megnevezés</th>
+                <th>Ár</th>
+                <th>Kategória</th>
+                <th>Készlet</th>
+                <th>Értékelés</th>
             </tr>
         </thead>
         <tbody>
-            @for(product of productList; track product){
+            @for(product of productList; track product.id){
                 <tr>
                     <td>{{product.id}}</td>
                     <td>{{product.name}}</td>
                     <td>{{product.price}}</td>
-                    <td>{{product.star}}</td>
+                    <td>{{product.category}}</td>
+                    <td>{{product.stock}}</td>
+                    <td>{{product.stars}}</td>
                     <td>
                     <button (click)="editProduct(product)"
                     class="btn btn-primary"
