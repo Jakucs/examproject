@@ -19,9 +19,16 @@ class EnsureProfileIsComplete
         $user = $request->user();
         
         // Ellenőrizze, hogy a szükséges mezők kitöltésre kerültek-e
-        if (is_null($user->last_name) ||is_null($user->first_name) ||is_null($user->phone_number) || is_null($user->postal_code) || is_null($user->city) ||
-            is_null($user->street) || is_null($user->house_number) || is_null($user->birth_date)) {
-            return response()->json(['message' => 'Please complete your profile before placing an order.'], 400);
+        if (is_null($user->last_name) ||
+            is_null($user->first_name) ||
+            is_null($user->phone_number) || 
+            is_null($user->postal_code) || 
+            is_null($user->city) ||
+            is_null($user->street) ||
+            is_null($user->house_number) ||
+            is_null($user->birth_date)) {
+                
+            return response()->json(['message' => 'Kérjük töltse ki az adatait, hogy leadhassa a rendelést!'], 400);
         }
         
 

@@ -55,11 +55,11 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 //Orders
-Route::middleware('auth:sanctum')->post('/checkout', [OrderController::class, 'checkout']);
+
 Route::middleware('auth:sanctum')->get('/orders', [OrderController::class, 'getOrders']);
 Route::middleware('auth:sanctum')->put('/orders/{id}/status', [OrderController::class, 'updateOrderStatus']);
 Route::middleware(['auth:sanctum', 'ensure.profile.complete'])->post('/order', [OrderController::class, 'store']); 
-//ez az utolsót még tesztelnem kell -rendelés leadáskor ellenőrzi, hogy a user kitöltötte-e a profilját
+//ezProfil ellenörzés nélküli változat Route::middleware('auth:sanctum')->post('/checkout', [OrderController::class, 'checkout']);
 
 //Profile
 Route::middleware('auth:sanctum')->group(function () {
