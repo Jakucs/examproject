@@ -1,0 +1,7 @@
+.container {
+    position: relative; /* Ez szükséges a gomb helyes pozicionálásához */
+  }
+  
+  .btn-close-lg {
+    font-size: 2rem; /* Nagyobb X ikont használhatsz */
+  }

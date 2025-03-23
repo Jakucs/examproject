@@ -2,26 +2,50 @@ import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AdminapiService } from '../shared/adminapi.service';
 import { CartapiService } from '../shared/cartapi.service';
+import { ProductSearchService } from '../shared/product-search.service';
+import { CommonModule } from '@angular/common';
+import { Router, RouterLink } from '@angular/router';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule, RouterLink],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })
 export class ProductsComponent {
   productPropertyList: any[] = [];
   activeCategory: string = '*';
+  searchQuery: string = '';
+  showProductDetail: boolean = false;
+  filteredProducts: any[] = [];
 
   constructor(
     private adminapi: AdminapiService,
-    private cartService: CartapiService
+    private cartService: CartapiService,
+    private productSearchService: ProductSearchService,
+    private app: AppComponent
   ){}
 
   ngOnInit(){
+    this.productSearchService.searchQuery$.subscribe(query => {
+      this.searchQuery = query;
+    });
+
     this.getProducts()
   }
+
+  get filterProducts() {
+    return this.productPropertyList.filter(product =>
+      product.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+    );
+  }
+
+  selectProduct(product: any) {
+    (window as any).selectedProduct = product;
+  }
+
 
   getProducts(){
     this.adminapi.getProducts().subscribe({
@@ -62,6 +86,16 @@ export class ProductsComponent {
 
   setActiveCategory(category: string){
     this.activeCategory = category;
+  }
+
+  scrollToProductDetail() {
+    const element = document.getElementById('product-detail');
+    if (element) {
+      window.scrollTo({
+        top: element.offsetTop, // Az elem függőleges pozíciója az oldalon, enélkül nem működik
+        behavior: 'smooth' // A görgetés sima
+      });
+    }
   }
   
 }

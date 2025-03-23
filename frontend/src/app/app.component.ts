@@ -8,11 +8,24 @@ import { CartapiService } from './shared/cartapi.service';
 import { HeaderComponent } from "./header/header.component";
 import { ProfilComponent } from './profil/profil.component';
 import { OrderComponent } from './order/order.component';
+import { ProductSearchService } from './shared/product-search.service';
+import { FormsModule } from '@angular/forms';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, ProductsComponent, AboutusComponent, FooterComponent, HeaderComponent, ProfilComponent, OrderComponent],
+  imports: [
+    RouterOutlet, 
+    RouterLink, 
+    ProductsComponent, 
+    AboutusComponent, 
+    FooterComponent, 
+    HeaderComponent, 
+    ProfilComponent, 
+    ProductDetailComponent,
+    OrderComponent, 
+    FormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -20,14 +33,17 @@ export class AppComponent {
   title = 'vizsgamunka';
   loggedIn = false;
   showAdminPage: boolean = false; //adminoldal alapértelmezett állása
+  showProductDetail: boolean = false;
   showProfile = false; //profilom menüpont alapértelmezett állása
   selectedLang = 'HU'; //nyelvválasztó dropdown menü alapértelmezett állása
   userName: string = ''; //bejelentkezett felhasználó neve alapból ''
   cartItemCount: number = 0; //User kosara alapból 0
+  searchText: string = ''; // keresőstring alapból ''
 
   constructor(
     private authapi: AuthapiService,
-    private cartService: CartapiService
+    private cartService: CartapiService,
+    private productSearchService: ProductSearchService
   ){}
 
   toggleProfile(show: boolean) {
@@ -47,8 +63,8 @@ export class AppComponent {
     this.selectedLang = lang;
   }
 
-  getUserIdFromLocalStorage() {
-
+  onSearchChange(){
+    this.productSearchService.updateSearchQuery(this.searchText)
   }
 
 
@@ -81,5 +97,12 @@ export class AppComponent {
 */
   scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  scrollToProducts() {
+    const element = document.getElementById('products');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 }

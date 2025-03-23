@@ -18,11 +18,20 @@
         </div>
   
         <div class="collection-list mt-4 row">
-
-
+          
           @for(productProperty of productPropertyList; track productProperty.id){
-            @if(activeCategory === '*' || productProperty.category === activeCategory){
-          <div class="card mt-3 ms-3" style="width: 18rem;">
+            @if(productProperty.name.toLowerCase().includes(searchQuery.toLowerCase()) &&
+            (activeCategory === '*' || productProperty.category === activeCategory)){ <!--Elképesztő feltétel vége-->
+          <div class="card mt-3 ms-3" style="width: 18rem; cursor: pointer;" 
+          [routerLink]="[{ outlets: { 'product-detail': ['product', productProperty.id] } }]"
+          [queryParams]="{ 
+             name: productProperty.name, 
+             description: productProperty.description, 
+             category: productProperty.category, 
+             stars: productProperty.stars, 
+             price: productProperty.price, 
+             image: productProperty.image 
+          }" (click)="scrollToProductDetail();"> <!--product-detail komponensnek adatok átadása url-ben.-->
             <img [src]="productProperty.image" class="card-img-top" alt="..."> <!--<---KÉP BETÖLTÉSE-->
             <div class="card-body text-center">
               <div class="rating mt-3">

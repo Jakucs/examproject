@@ -3,6 +3,7 @@ import {FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule} f
 import { Router, RouterLink } from '@angular/router';
 import { AuthapiService } from '../shared/authapi.service';
 import { AppComponent } from '../app.component';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -21,6 +22,7 @@ export class LoginComponent {
   ){}
 
   loggedIn = false;
+  errorMessageFromBackend!: any;
 
 
 
@@ -38,7 +40,14 @@ export class LoginComponent {
     console.log("Itt következik az azonosítás..");
     this.authapi.login(this.loginForm.value).subscribe({
       next: (data: any) => {
-        console.log(data)
+        console.log(data);
+
+        if(!data.token){
+          this.errorMessageFromBackend = `
+          <p>Az azonosítás sikertelen. Nincs érvényes token!</p>`;
+          return;
+        }
+
         localStorage.setItem('token', data.token);
         localStorage.setItem('userName', data.user.name);
         localStorage.setItem('role', data.user.role);
@@ -55,8 +64,12 @@ export class LoginComponent {
 
         this.loginForm.reset()
       },
-      error: (err) => {
-        console.log(err)
+      error: (error: HttpErrorResponse) => {
+        console.log("Belépési hiba:",error),
+        this.errorMessageFromBackend = `
+        <p>Hibás felhasználónév vagy jelszó</p> <hr> 
+        ${error.error?.message} </br>  
+        `
       }
     })
   }

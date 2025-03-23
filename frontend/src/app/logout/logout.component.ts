@@ -35,6 +35,7 @@ export class LogoutComponent {
     localStorage.removeItem('token');
     localStorage.removeItem('userName');
     localStorage.removeItem('role');
+    localStorage.removeItem('userId');
     this.router.navigate(['/']);
   }
 }
