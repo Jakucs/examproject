@@ -9,6 +9,8 @@ use App\Http\Middelware\RoleMiddleware;
 use App\Http\Controllers\OrderController;  
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\EnsureProfileIsComplete;
+use App\Http\Controllers\ImageController;
+use App\Models\Image;
 
 
 Route::get('/user', function (Request $request) {
@@ -59,7 +61,7 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::middleware('auth:sanctum')->get('/orders', [OrderController::class, 'getOrders']);
 Route::middleware('auth:sanctum')->put('/orders/{id}/status', [OrderController::class, 'updateOrderStatus']);
 Route::middleware(['auth:sanctum', 'ensure.profile.complete'])->post('/order', [OrderController::class, 'store']); 
-//ezProfil ellenörzés nélküli változat Route::middleware('auth:sanctum')->post('/checkout', [OrderController::class, 'checkout']);
+//még kezdeti Profil ellenörzés nélküli változat Route::middleware('auth:sanctum')->post('/checkout', [OrderController::class, 'checkout']);
 
 //Profile
 Route::middleware('auth:sanctum')->group(function () {
@@ -68,3 +70,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/profile/password', [ProfileController::class, 'updatePassword']);
     Route::delete('/profile', [ProfileController::class, 'deleteAccount']);
 });
+
+
+Route::middleware(['auth:sanctum', 'role:admin|superadmin'])->post('/upload-image', [ImageController::class, 'upload']);
+Route::middleware(['auth:sanctum', 'role:admin|superadmin'])->delete('/delete-image/{id}', [ImageController::class, 'delete']);
+Route::middleware(['auth:sanctum'])->get('/images/{entityType}/{entityId}', [ImageController::class, 'getImages']);

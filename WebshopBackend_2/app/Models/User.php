@@ -79,4 +79,11 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function setPhoneNumberAttribute($value) 
+    {
+    $this->attributes['phone_number'] = preg_replace('/[^0-9+]/', '', $value);
+    }
+
+
+
 }
