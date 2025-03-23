@@ -22,13 +22,12 @@
 
     }
     <!--Keresőgomb mindig megjelenik-->
-      <button type="button" class="btn position-relative dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+      <button type="button" class="btn position-relative dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" (click)="scrollToProducts()">
         <i class="bi bi-search"></i>
       </button>
       
       <div class="search-container dropdown-menu">
-        <input type="text" class="form-control search-input" placeholder="Keresés...">
-        <i class="fas fa-search search-icon"></i>
+        <input type="text" class="form-control search-input" placeholder="Keresés..." [(ngModel)]="searchText" (ngModelChange)="onSearchChange()">
 
         <!--<div class="suggestions">
           <div class="suggestion-item">
@@ -118,6 +117,7 @@
 
   @if(!showAdminPage){
     <app-header id="header"></app-header>
+    <router-outlet name="product-detail" id="product-detail"></router-outlet>
     <app-products id="products"></app-products>
     <app-aboutus id="aboutus"></app-aboutus>
     <app-footer id="footer"></app-footer>

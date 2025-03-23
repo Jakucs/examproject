@@ -14,6 +14,7 @@ import { HeaderComponent } from './header/header.component';
 import { ProfilComponent } from './profil/profil.component';
 import { OrderComponent } from './order/order.component';
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent, outlet: 'top'},
@@ -25,7 +26,10 @@ export const routes: Routes = [
     { path: 'profil', component: ProfilComponent, outlet: 'top'},
     { path: 'changepassword', component: ChangepasswordComponent, outlet: 'top'},
     { path: 'header', component: HeaderComponent, outlet: 'header'},
+
     { path: 'products', component: ProductsComponent},
+    { path: 'product/:id', component: ProductDetailComponent, outlet: 'product-detail'},
+    
     { path: 'aboutus', component: AboutusComponent},
     { path: 'footer', component: FooterComponent},
     { path: '', component: AppComponent },

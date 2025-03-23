@@ -12,3 +12,9 @@
 p {
     background-color: rgba(0, 0, 0, 0.05);
 }
+
+img{
+    width: 600px;
+    height: 350px;
+    margin-bottom: 15px;
+}
