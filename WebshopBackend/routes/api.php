@@ -5,10 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\AuthController; 
-use App\Http\Middelware\RoleMiddleware; 
+use App\Http\Middleware\RoleMiddleware; 
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;  
-use App\Http\Middelware\CheckProfileCompletion;
+use App\Http\Middleware\CheckProfileCompletion;
 
 
 Route::get('/user', function (Request $request) {
@@ -69,9 +69,8 @@ Route::middleware(['auth:sanctum', \App\Http\Middleware\CheckProfileCompletion::
 //Profile
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'show']);
-    Route::put('/profile', [ProfileController::class, 'update']);
+    Route::get('/profile', [ProfileController::class, 'getProfile']);
+    Route::put('/profile', [ProfileController::class, 'updateProfile']);
     Route::put('/profile/password', [ProfileController::class, 'updatePassword']);
-    Route::delete('/profile', [ProfileController::class, 'deleteAccount']);
-
 });
+

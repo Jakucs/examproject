@@ -14,6 +14,14 @@ class OrderController extends Controller
     public function checkout(Request $request)
     {
         $user = Auth::user();
+        
+        if (!$user->last_name || !$user->first_name || !$user->birth_date || 
+        !$user->phone_number || !$user->zip_code || !$user->city || 
+        !$user->street || !$user->house_number) {
+        
+        return response()->json(['message' => 'Kérjük, töltse ki a profilját a rendelés leadásához.'], 400);
+    }
+       
         $cartItems = CartItem::where('user_id', $user->id)->get();
 
         if ($cartItems->isEmpty()) {
@@ -67,11 +75,6 @@ class OrderController extends Controller
             DB::rollBack();
             return response()->json(['message' => 'Hiba történt a rendelés leadásakor.', 'error' => $e->getMessage()], 500);
         }
-    }
-//Check profile
-    public function __construct()
-    {
-        $this->middleware('check.profile')->only(['checkout']);
     }
 
     public function getOrders()
