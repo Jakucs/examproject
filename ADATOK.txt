@@ -1,9 +1,9 @@
 INSERT INTO products (name, description, category, stars, price, stock, image) VALUES
-('Csokoládés ropogós tücsök', 'Tejcsokoládéval bevont, édes és ropogós tücskök.', 'cricket', 5, 7.99, 50, 'https://res.cloudinary.com/ddt30o1t2/image/upload/v1742379158/jiminis10_sh5i8n.png'),
-('Fűszeres chili tücsök', 'Erős chilis ízesítésű sült sáskák.', 'cricket', 4, 7.99, 80, 'https://res.cloudinary.com/ddt30o1t2/image/upload/v1742379157/jiminis5_x7eyxk.png'),
-('BBQ tücsök', 'Füstölt hagymás BBQ szószban sült ropogós tücskök.', 'cricket', 5, 7.99, 150, 'https://res.cloudinary.com/ddt30o1t2/image/upload/v1742379160/jiminis16_jmooeh.png'),
+('Csokoládés ropogós tücskök', 'Tejcsokoládéval bevont, édes és ropogós tücskök.', 'cricket', 5, 7.99, 50, 'https://res.cloudinary.com/ddt30o1t2/image/upload/v1742379158/jiminis10_sh5i8n.png'),
+('Fűszeres chili tücskök', 'Erős chilis ízesítésű sült sáskák.', 'cricket', 4, 7.99, 80, 'https://res.cloudinary.com/ddt30o1t2/image/upload/v1742379157/jiminis5_x7eyxk.png'),
+('BBQ tücskök', 'Füstölt hagymás BBQ szószban sült ropogós tücskök.', 'cricket', 5, 7.99, 150, 'https://res.cloudinary.com/ddt30o1t2/image/upload/v1742379160/jiminis16_jmooeh.png'),
 ('Kurkumás tücskök', 'Kurkumás bevonatú ropogós tücskök.', 'cricket', 5, 7.99, 110, 'https://res.cloudinary.com/ddt30o1t2/image/upload/v1742379112/jiminis1_ixndf2.png'),
-('Sós vajas karamellás lisztkukac', 'Sós vajas karamellás aromával ízesített sült lisztkukacok.', 'mealworm', 3, 7.99, 120, 'https://res.cloudinary.com/ddt30o1t2/image/upload/v1742379133/jiminis2_ihys48.png'),
+('Sós vajas karamellás lisztkukacok', 'Sós vajas karamellás aromával ízesített sült lisztkukacok.', 'mealworm', 3, 7.99, 120, 'https://res.cloudinary.com/ddt30o1t2/image/upload/v1742379133/jiminis2_ihys48.png'),
 ('Bors és aszalt paradicsom ízesítésű szöcske', 'Borsal és aszalt paradicsommal ízesített szöcskék.', 'grasshopper', 5, 7.99, 50, 'https://res.cloudinary.com/ddt30o1t2/image/upload/v1742379158/jiminis12_qbwmyv.png'),
 ('Natural szöcskék', 'Magas protein és rost tartalmú.', 'grasshopper', 4, 7.99, 80, 'https://res.cloudinary.com/ddt30o1t2/image/upload/v1742379159/jiminis15_ykumow.png'),
 ('Kakukkfű-oregánó szöcskék', 'Kakukkfű-oregánó ízesítésű szöcskék.', 'grasshopper', 4, 7.99, 80, 'https://res.cloudinary.com/ddt30o1t2/image/upload/v1742379159/jiminis14_vikemz.png'),
@@ -38,9 +38,8 @@ INSERT INTO products (name, description, category, stars, price, stock, image) V
 ('BBQ-paprika ízesítésű lisztkukacok', 'Szárított tücskök füstölt bors ízesítéssel', 'mealworm', 4, 6.99, 65, 'https://res.cloudinary.com/ddt30o1t2/image/upload/v1742408232/WRM-BBQ_0_jw9wd7.webp'),
 ('Szárított lisztkukac fűszeres-fokhagyma ízesítéssel', 'Szárított tücskök fűszeres-fokhagyma ízesítéssel', 'mealworm', 4, 6.99, 65, 'https://res.cloudinary.com/ddt30o1t2/image/upload/v1742407198/WRM-GNH_0_rf1n4a.webp'),
 ('Szárított lisztkukac hagyma-petrezselyem ízesítéssel', 'Szárított tücskök hagyma-petrezselyem ízesítéssel', 'mealworm', 4, 6.99, 65, 'https://res.cloudinary.com/ddt30o1t2/image/upload/v1742407198/WRM-ONP_0_ispnyb.webp'),
-('Szárított lisztkukac felfedező csomag', 'Szárított tücskök felfedező csomag fokhagyma-', 'mealworm', 4, 19.99, 65, 'https://res.cloudinary.com/ddt30o1t2/image/upload/v1742407198/WRM-ONP_0_ispnyb.webp'),
 ('Szárított lisztkukacok felfedező csomag', 'Szárított lisztkukacok felfedező csomag fűszeres-fokhagyma, hagyma-petrezselyem, BBQ-paprika', 'mealworm', 4, 19.99, 65, 'https://res.cloudinary.com/ddt30o1t2/image/upload/v1742407198/WRM-SET_0_eqrpbx.webp'),
-('Tücsökliszt főzéshez', 'Tücsökliszt főzéshez, magas protein, vas és rost tartalmú', 'other', 4, 12.50, 65, 'https://res.cloudinary.com/ddt30o1t2/image/upload/v1742409380/t%C3%BCcs%C3%B6kliszt_f%C5%91z%C3%A9shez_i4j9gs.webp');
+('Tücsökliszt főzéshez', 'Tücsökliszt főzéshez, magas protein, vas és rost tartalmú', 'other', 4, 12.50, 65, 'https://res.cloudinary.com/ddt30o1t2/image/upload/v1742409380/t%C3%BCcs%C3%B6kliszt_f%C5%91z%C3%A9shez_i4j9gs.webp'),
 ('Tenebrio Molitor Liszt', 'Finoman szitált lisztkukac-lisztünk tökéletesen beilleszthető minden kulináris elkészítésbe, biztosítva az egyenletes textúrát és a megőrzött tápértéket.', 'other', 4, 12.50, 65, 'https://res.cloudinary.com/ddt30o1t2/image/upload/v1742406087/jiminis_desszert_liszt_sdz5b2.png');
 
 INSERT INTO cart_items (user_id, product_id, quantity) VALUES
@@ -52,7 +51,6 @@ INSERT INTO cart_items (user_id, product_id, quantity) VALUES
 (1, 1, 2), (1, 3, 1), (1, 5, 4), (1, 2, 2), (1, 4, 3), (1, 7, 2), (1, 9, 3), (1, 11, 1), (1, 13, 2), (1, 15, 4),
 (2, 1, 5), (2, 2, 2), (2, 3, 3), (2, 4, 1), (2, 5, 2), (2, 6, 4), (2, 8, 2), (2, 10, 3), (2, 12, 1), (2, 14, 5),
 (3, 1, 1), (3, 3, 2), (3, 5, 3), (3, 2, 4), (3, 4, 5), (3, 6, 2), (3, 7, 3), (3, 9, 1), (3, 11, 5), (3, 13, 2);
-
 
 
 
