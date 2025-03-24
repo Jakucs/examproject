@@ -30,7 +30,7 @@ export class AdminComponent {
   constructor(
     private adminapi: AdminapiService,
     private router: Router,
-    private app: AppComponent
+    private app: AppComponent,
   ){}
 
 

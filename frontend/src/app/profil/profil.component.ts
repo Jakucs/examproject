@@ -17,6 +17,7 @@ export class ProfilComponent {
   userName: string = '';
   userDataForm!: FormGroup;
   showProfile = true;
+  successfullProfilDataChanged: boolean = false;
 
   constructor(
     private authapi: AuthapiService,
@@ -32,11 +33,11 @@ export class ProfilComponent {
       first_name: ['', [Validators.required, Validators.minLength(2)]],
       last_name: ['', [Validators.required, Validators.minLength(2)]],
       birth_date: [''],
-      phone_number: ['', [Validators.pattern(/^\+?\d{7,15}$/)]],
-      zip_code: ['', [Validators.pattern(/^\d{4,5}$/)]],
+      phone_number: [''/*, [Validators.pattern(/^\+?\d{7,15}$/)]*/],
+      postal_code: ['', [Validators.pattern(/^\d{4,5}$/)]],
       city: ['', Validators.required],
       street: ['', Validators.required],
-      house_number: ['', Validators.required, Validators.pattern(/^\d+[a-zA-Z]?$/)],
+      house_number: ['', [Validators.required, Validators.pattern(/^\d+[a-zA-Z]?$/)]],
       floor: [''],
       door: [''],
       email: ['', [Validators.required, Validators.email]],
@@ -52,6 +53,7 @@ export class ProfilComponent {
         console.log('Betöltött user adatok:', response);
         this.userDataForm.patchValue(response);
         console.log('Form értékei:', this.userDataForm.value);
+        
       },
       (error) => {
         console.error('Hiba történt az adatok betöltésekor:', error);
@@ -63,6 +65,7 @@ export class ProfilComponent {
     this.userProfileService.updateUserData(this.userDataForm.value).subscribe(
       (response) => {
         console.log('Sikeres mentés: ', response);
+        this.successfullProfilDataChanged = true;
       },
       (error) => {
         console.error('Hiba történt mentés közben: ', error);
@@ -78,5 +81,7 @@ export class ProfilComponent {
     navigateToChangePassword(){
       this.router.navigate([{outlets: {top: 'changepassword' }}]);
     }
+
+
 
 }

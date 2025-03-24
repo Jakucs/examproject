@@ -90,6 +90,7 @@ export class CartComponent {
     this.cartService.modifyCartItemQuantity(cartItem.id, cartItem.quantity).subscribe({
       next: (data: any) => {
         console.log("Kosár mennyisége frissítve:", data);
+        this.getCart();
       },
       error: (error) => {
         console.error("Hiba történt a kosár termék mennyiségének frissítése során:", error);
@@ -103,6 +104,7 @@ export class CartComponent {
     this.cartService.modifyCartItemQuantity(cartItem.id, cartItem.quantity).subscribe({
       next: (data: any) => {
         console.log("Kosár mennyisége frissítve:", data);
+        this.getCart();
       },
       error: (error) => {
         console.error("Hiba történt a kosár termék mennyiségének frissítése során:", error);

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CartapiService } from '../shared/cartapi.service';
+import { OrderapiService } from '../shared/orderapi.service';
 
 @Component({
   selector: 'app-order',
@@ -12,7 +13,10 @@ export class OrderComponent {
   cartItems: any[] = [];
   overAmount: number = 0;
 
-  constructor(private cartService: CartapiService){}
+  constructor(
+    private cartService: CartapiService,
+    private orderService: OrderapiService
+  ){}
 
   ngOnInit(){
     this.getOrderData()
@@ -37,6 +41,17 @@ export class OrderComponent {
       },
       error: (error) => {
         console.error('Hiba történt a rendelés betöltésekor: ', error);
+      }
+    })
+  }
+
+  takeOrder(){
+    this.orderService.takeOrder().subscribe({
+      next: (response) => {
+        console.log('Rendelés sikeres: ', response);
+      },
+      error: (error) => {
+        console.error('Hiba történt a rendelés leadásakor: ', error)
       }
     })
   }

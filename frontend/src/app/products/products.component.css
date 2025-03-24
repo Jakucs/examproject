@@ -20,6 +20,11 @@
     border-color: var(--pink)!important;
 }
 
+.active-filter-btn:active{
+    background-color: rgb(44, 44, 245)!important;
+    border-color: rgb(197, 240, 41)!important;
+}
+
 .collection-img span{
     top: 20px;
     right: 20px;

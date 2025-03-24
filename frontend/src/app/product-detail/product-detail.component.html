@@ -1,4 +1,4 @@
-@if(showProductDetail){
+
 
 <div class="container mt-5">
     <button type="button" class="btn-close btn-close-lg position-absolute top-0 end-0" aria-label="Close" (click)="closeDetail()"></button>
@@ -36,14 +36,14 @@
             </div>-->
             <div class="mb-4">
                 <label for="quantity" class="form-label">Mennyiség:</label>
-                <input type="number" class="form-control" id="quantity" value="1" min="1" style="width: 80px;">
+                <input type="number" class="form-control" id="quantity" min="1" [(ngModel)]="quantity" style="width: 80px;">
             </div>
             
-            <button class="btn btn-primary btn-lg mb-3 me-2">
-                    <i class="bi bi-cart-plus"></i> Hozzáadás a kosárhoz
+            <button class="btn btn-primary btn-lg mb-3 me-2 addToCart" (click)="addToCart(id)">
+                    <i class="bi bi-basket3-fill"></i> Hozzáadás a kosárhoz
                 </button>
 
-            <button class="btn btn-outline-secondary btn-lg mb-3">
+            <button class="btn btn-secondary btn-lg mb-3 addToWish">
                     <i class="bi bi-heart"></i> Hozzáadás a kedvencekhez
                 </button>
             <div class="mt-4">
@@ -61,4 +61,3 @@
     </div>
 </div>
 
-}

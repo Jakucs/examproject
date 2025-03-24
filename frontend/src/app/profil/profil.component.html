@@ -32,7 +32,7 @@
         <span class="input-group-text ms-1">Vezetéknév</span>
         <input type="text" formControlName="last_name" class="form-control mb-4 ms-1"
         [ngClass]="{'is-invalid': userDataForm.controls['last_name'].invalid && userDataForm.controls['last_name'].touched}">
-        @if(userDataForm.controls['last_name'].invalid && userDataForm.controls['first_name'].touched){
+        @if(userDataForm.controls['last_name'].invalid && userDataForm.controls['last_name'].touched){
             <div class="invalid-feedback ms-1">
                 A vezetéknév megadása kötelező
                 </div>
@@ -63,9 +63,9 @@
 
     <div class="form-group">
         <span class="input-group-text ms-1">irányítószám</span>
-        <input type="number" formControlName="zip_code" class="form-control mb-4 ms-1"
-        [ngClass]="{'is-invalid': userDataForm.controls['zip_code'].invalid && userDataForm.controls['zip_code'].touched}">
-        @if(userDataForm.controls['zip_code'].invalid && userDataForm.controls['zip_code'].touched){
+        <input type="number" formControlName="postal_code" class="form-control mb-4 ms-1"
+        [ngClass]="{'is-invalid': userDataForm.controls['postal_code'].invalid && userDataForm.controls['postal_code'].touched}">
+        @if(userDataForm.controls['postal_code'].invalid && userDataForm.controls['postal_code'].touched){
             <div class="invalid-feedback ms-1">
                 Irányítószám megadása kötelező
             </div>
@@ -75,7 +75,7 @@
     <div class="form-group">
         <span class="input-group-text ms-1">Város</span>
         <input type="text" formControlName="city" class="form-control mb-4 ms-1"
-        [ngClass]="{'is-invalid': userDataForm.controls['city'].invalid && userDataForm.controls['zip_code'].touched}">
+        [ngClass]="{'is-invalid': userDataForm.controls['city'].invalid && userDataForm.controls['city'].touched}">
         @if (userDataForm.controls['city'].invalid && userDataForm.controls['city'].touched) {
             <div class="invalid-feedback ms-1">
                 Város megadása kötelező
@@ -96,7 +96,7 @@
 
     <div class="form-group">
         <span class="input-group-text ms-1">Házszám</span>
-        <input type="number" formControlName="house_number" class="form-control mb-4 ms-1"
+        <input type="text" formControlName="house_number" class="form-control mb-4 ms-1"
         [ngClass]="{'is-invalid': userDataForm.controls['house_number'].invalid && userDataForm.controls['house_number'].touched}">
         @if (userDataForm.controls['house_number'].invalid && userDataForm.controls['house_number'].touched) {
             <div class="invalid-feedback ms-1">
@@ -106,12 +106,12 @@
     </div>
     <div class="form-group">
         <span class="input-group-text ms-1">Emelet</span>
-        <input type="number" formControlName="floor" class="form-control mb-4 ms-1">
+        <input type="text" formControlName="floor" class="form-control mb-4 ms-1">
     </div>
 
     <div class="form-group">
         <span class="input-group-text ms-1">Ajtó</span>
-        <input type="number" formControlName="door" class="form-control mb-4 ms-1">
+        <input type="text" formControlName="door" class="form-control mb-4 ms-1">
     </div>
 
     <div class="form-group">
@@ -130,6 +130,13 @@
     </div>
     
 </form>
+
+@if(successfullProfilDataChanged){
+    <div class="d-flex mt-3 justify-content-center">
+        <h1 class="ms-between">Sikeresen megváltoztattad az adataidat</h1>
+        <img src="images/registerSuccessful.png" alt="Sikeres módosítás ikon" class="ms-2" style="width: 50px; height: 50px;">
+    </div>
+}
 
 </div>
 

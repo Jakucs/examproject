@@ -41,15 +41,15 @@ export class SuperadminComponent {
     })
   }
 
-  startAddAdmin(){
+/*  startAddAdmin(){
     this.adminId = 0
     this.adminName = ""
     this.adminEmail = ""
     this.adminPassword = ""
     this.role = 1
-  }
+  } */
 
-  saveAdmin(){
+/*  saveAdmin(){
     console.log("Mentés...")
     const user = {
       id: this.adminId,
@@ -65,7 +65,7 @@ export class SuperadminComponent {
       }
     })
   }
-
+*/
 
 
   updateUser(){
