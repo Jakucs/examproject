@@ -50,8 +50,7 @@ export class AdminapiService {
 
   updateUser(user: any){
     const headers = this.authapi.makeHeader();
-    const url = this.usersURL + "/" + user.id;
-    return this.http.put(url, user, { headers })
+    return this.http.post(this.setAdminURL, user, { headers })
   }
 
   deleteUser(id: number){

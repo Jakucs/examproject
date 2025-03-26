@@ -1,4 +1,4 @@
-<h1>Felhasználók kezelése</h1>
+<h1>SZUPERADMIN FELÜLET</h1>
 
 
 <div class="ms-3 mt-3 position-relative">
@@ -90,17 +90,14 @@
                 <div class="mb-3">
                   <label for="userName" class="form-label">Felhasználó neve</label>
                   <input type="text" class="form-control" 
-                  id="userName" [(ngModel)]="userName">
+                  id="userName" [(ngModel)]="userName" readonly>
                 </div>
                 <div class="mb-3">
-                  <label for="userEmail" class="form-label">Felhasználó email címe</label>
-                  <input type="text" class="form-control" 
-                  id="userEmail" [(ngModel)]="userEmail">
-                </div>
-                <div class="mb-3">
-                  <label for="userPassword" class="form-label">Felhasználó jelszava</label>
-                  <input type="text" class="form-control" 
-                  id="userPassword" [(ngModel)]="userPassword">
+                  <label for="role" class="form-label">Szerep</label>
+                  <select class="form-select" id="role" [(ngModel)]="role">
+                    <option value="user">user</option>
+                    <option value="admin">admin</option>
+                  </select>
                 </div>
             </div>
 
@@ -150,17 +147,22 @@
                     <td>{{user.password}}</td>
                     <td>{{user.role}}</td>
                     <td>
-                    <button (click)="editUser(user)"
-                    class="btn btn-primary"
-                    data-bs-toggle="modal" data-bs-target="#editUserModal">
-                    <i class="bi bi-pencil"></i>
-                    </button>
-
-                    <button (click)="deleteUser(user.id)"
-                    class="btn btn-danger ms-2">
-                    <i class="bi bi-trash"></i>
-                    </button>
+                      @if(!(user.role==='superadmin')){
+                        <button (click)="editUser(user)"
+                        class="btn btn-primary"
+                        data-bs-toggle="modal" data-bs-target="#editUserModal">
+                        <i class="bi bi-pencil"></i>
+                        </button>
+    
+                        <button (click)="deleteUser(user.id)"
+                        class="btn btn-danger ms-2">
+                        <i class="bi bi-trash"></i>
+                        </button>
+                      }
                 </td>
+              
+              
+
                 </tr>
             }
         </tbody>

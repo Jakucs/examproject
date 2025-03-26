@@ -40,6 +40,7 @@ export class ChangepasswordComponent {
       },
       error: (error) => {
         console.log('Hiba történt: ', error)
+        this.textFromBackend = error.error.message;
       }
     })
   }

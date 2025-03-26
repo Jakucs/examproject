@@ -1,0 +1,9 @@
+#errorMessageFromBackend {
+font-weight: bold;
+color: #ff0000;
+}
+
+#successfullMessageFromBackend{
+  font-weight: bold;
+  color: #8c00ff;
+}

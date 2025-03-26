@@ -1,4 +1,4 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { /*AfterViewInit,*/ Component } from '@angular/core';
 
 declare var bootstrap: any;
 
@@ -9,8 +9,8 @@ declare var bootstrap: any;
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
-export class HeaderComponent implements AfterViewInit {
-
+export class HeaderComponent /* implements AfterViewInit ˛*/{
+/*
   carousel: any;
 
   ngAfterViewInit() {
@@ -28,5 +28,6 @@ export class HeaderComponent implements AfterViewInit {
   nextSlide() {
     this.carousel.next();
   }
+    */
 }
 

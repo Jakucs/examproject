@@ -12,6 +12,10 @@ import { OrderapiService } from '../shared/orderapi.service';
 export class OrderComponent {
   cartItems: any[] = [];
   overAmount: number = 0;
+  orderExist: boolean = false;
+  errorMessageFromBackend: string = "";
+  successfullMessageFromBackend: string = "";
+
 
   constructor(
     private cartService: CartapiService,
@@ -45,13 +49,26 @@ export class OrderComponent {
     })
   }
 
+
   takeOrder(){
     this.orderService.takeOrder().subscribe({
-      next: (response) => {
+      next: (response: any) => {
         console.log('Rendelés sikeres: ', response);
+        this.orderExist = true;
+        this.successfullMessageFromBackend = `
+        Köszönjük szépen a rendelésed! <br>
+        ${response.message} <br>
+        <span class="order">Státusz: ${response.order.status}</span> <br>
+        <span class="order">Végösszeg: €${response.order.total_price}</span> <br>
+        <span class="order">Rendelés ideje: ${response.order.updated_at}</span>
+        `
       },
-      error: (error) => {
+      error: (error: any) => {
         console.error('Hiba történt a rendelés leadásakor: ', error)
+        this.errorMessageFromBackend = `
+        <span class="order-error">Hiba történt a rendelés során!</span> <hr>
+        ${error.error.message}
+        `;
       }
     })
   }
