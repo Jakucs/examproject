@@ -1,7 +1,5 @@
 <h1><strong>{{ userName }}</strong> kosarának tartalma</h1>
 
-<!--<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">-->
-
 @if(cartItems.length > 0){
 
 
@@ -17,7 +15,7 @@
                 @for(cartItem of cartItems; track cartItem;){
                         <div class="row cart-item mb-3">
                             <div class="col-md-3">
-                                <img src="images/jiminis1.jpg" class="card-img-top" alt="...">
+                                <img [src]="cartItem.image" class="card-img-top" alt="...">
                             </div>
                             <div class="col-md-5">
                                 <h5 class="card-title">{{cartItem.name}}</h5>

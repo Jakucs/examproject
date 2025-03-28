@@ -123,9 +123,13 @@
         <button class="btn btn-primary mb-4 ms-1" [disabled]="userDataForm.invalid" (click)="saveData()">
             Mentés
         </button>
-    
-        <button class="btn btn-secondary mb-4 ms-auto"  (click)="toggleProfile(false); navigateToChangePassword()">
+
+        <button class="btn btn-secondary mb-4 ms-3"  (click)="toggleProfile(false); navigateToChangePassword()">
             Jelszó megváltoztatása
+        </button>
+    
+        <button class="btn btn-secondary mb-4 ms-auto" [routerLink]="[{ outlets: { top: ['myorders'] } }]" (click)="scrollToTop(); toggleProfile(false);">
+            Rendeléseim
         </button>
     </div>
     
@@ -135,6 +139,14 @@
     <div class="d-flex mt-3 justify-content-center">
         <h1 class="ms-between">Sikeresen megváltoztattad az adataidat</h1>
         <img src="images/registerSuccessful.png" alt="Sikeres módosítás ikon" class="ms-2" style="width: 50px; height: 50px;">
+    </div>
+}
+
+@if(errorProfilDataChanged){
+    <div class="d-flex mt-3 justify-content-center ms-3">
+        <h1>
+            <strong [innerHTML]="errorMessageFromBackend" id="errorMessageFromBackend" class="mt-2"></strong>
+        </h1>
     </div>
 }
 

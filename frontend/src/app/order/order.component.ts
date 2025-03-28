@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { CartapiService } from '../shared/cartapi.service';
 import { OrderapiService } from '../shared/orderapi.service';
+import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-order',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './order.component.html',
   styleUrl: './order.component.css'
 })
@@ -15,17 +17,22 @@ export class OrderComponent {
   orderExist: boolean = false;
   errorMessageFromBackend: string = "";
   successfullMessageFromBackend: string = "";
+  showGoToProfil: boolean = false;
 
 
   constructor(
     private cartService: CartapiService,
-    private orderService: OrderapiService
+    private orderService: OrderapiService,
+    private routes: Router
   ){}
 
   ngOnInit(){
     this.getOrderData()
   }
 
+  goToProfile(){
+    this.routes.navigate([{ outlets: { top: ['profil'] } }]) 
+  }
 
   getOrderData() {
     this.cartService.getCartItems().subscribe({
@@ -69,6 +76,7 @@ export class OrderComponent {
         <span class="order-error">Hiba történt a rendelés során!</span> <hr>
         ${error.error.message}
         `;
+        this.showGoToProfil = true;
       }
     })
   }

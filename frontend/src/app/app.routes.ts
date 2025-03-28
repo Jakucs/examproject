@@ -15,6 +15,7 @@ import { ProfilComponent } from './profil/profil.component';
 import { OrderComponent } from './order/order.component';
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { MyordersComponent } from './myorders/myorders.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent, outlet: 'top'},
@@ -29,7 +30,8 @@ export const routes: Routes = [
 
     { path: 'products', component: ProductsComponent},
     { path: 'product/:id', component: ProductDetailComponent, outlet: 'product-detail'},
-    
+
+    {path: 'myorders', component: MyordersComponent, outlet: 'top'},
     { path: 'aboutus', component: AboutusComponent},
     { path: 'footer', component: FooterComponent},
     { path: '', component: AppComponent },

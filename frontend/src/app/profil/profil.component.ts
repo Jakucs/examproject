@@ -18,6 +18,8 @@ export class ProfilComponent {
   userDataForm!: FormGroup;
   showProfile = true;
   successfullProfilDataChanged: boolean = false;
+  errorProfilDataChanged = false;
+  errorMessageFromBackend = "";
 
   constructor(
     private authapi: AuthapiService,
@@ -66,12 +68,19 @@ export class ProfilComponent {
       (response) => {
         console.log('Sikeres mentés: ', response);
         this.successfullProfilDataChanged = true;
+        this.errorProfilDataChanged = false;
+        this.loadUserData();
       },
       (error) => {
         console.error('Hiba történt mentés közben: ', error);
+        this.errorProfilDataChanged = true;
+        this.errorMessageFromBackend = `
+        <span class="order-error">Hiba történt az adatok megadása során!</span> <hr>
+        ${error.error.message}
+        `
       }
     );
-    this.loadUserData()
+
   }
 
     toggleProfile(show: boolean) {
@@ -82,6 +91,8 @@ export class ProfilComponent {
       this.router.navigate([{outlets: {top: 'changepassword' }}]);
     }
 
-
+    scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
 }
