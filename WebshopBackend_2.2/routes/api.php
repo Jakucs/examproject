@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\AuthController; 
-use App\Http\Middelware\RoleMiddleware; 
+use App\Http\Middleware\RoleMiddleware; 
 use App\Http\Controllers\OrderController;  
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\EnsureProfileIsComplete;
@@ -64,7 +64,7 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::middleware('auth:sanctum')->get('/orders', [OrderController::class, 'getOrders']);
 Route::middleware('auth:sanctum')->put('/orders/{id}/status', [OrderController::class, 'updateOrderStatus']);
 Route::middleware(['auth:sanctum', 'ensure.profile.complete'])->post('/order', [OrderController::class, 'store']); 
-//még kezdeti Profil ellenörzés nélküli változat Route::middleware('auth:sanctum')->post('/checkout', [OrderController::class, 'checkout']);
+
 
 //Profile
 Route::middleware('auth:sanctum')->group(function () {

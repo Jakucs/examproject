@@ -44,13 +44,13 @@ class AuthController extends Controller
             'password' => 'required'
         ]);
     
-        // Eldöntjük, hogy email vagy felhasználónév érkezett
+        
         $loginType = filter_var($request->login, FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
     
-        // Egyedi kulcs a throttle-hoz (pl. email vagy IP alapján)
-        $key = 'login:' . $request->login; // vagy: $key = 'login:' . $request->ip();
+        
+        $key = 'login:' . $request->login; 
     
-        // Ellenőrizzük, hogy túl sok próbálkozás történt-e
+        
         if (RateLimiter::tooManyAttempts($key, 3)) {
             $seconds = RateLimiter::availableIn($key);
             return response()->json([
@@ -58,27 +58,27 @@ class AuthController extends Controller
             ], 429);
         }
     
-        // Hitelesítési adatok előkészítése
+        
         $credentials = [
             $loginType => $request->login,
             'password' => $request->password
         ];
     
         if (!Auth::attempt($credentials)) {
-            RateLimiter::hit($key, 60); // Sikertelen próbálkozás -> 60 mp timeout
+            RateLimiter::hit($key, 60); 
             return response()->json(['error' => 'Hibás bejelentkezési adatok'], 401);
         }
     
-        // Sikeres bejelentkezés esetén töröljük a próbálkozások számát
+        
         RateLimiter::clear($key);
     
-        // Bejelentkezett felhasználó lekérése
+        
         $user = Auth::user();
         
-        // Korábbi tokenek törlése
+        
         $user->tokens()->delete();
     
-        // Új token generálása
+       
         $token = $user->createToken('sajatToken')->plainTextToken;
     
         return response()->json([
@@ -139,24 +139,24 @@ class AuthController extends Controller
 
          $authUser = Auth::user();
 
-    // Csak szuperadmin végezheti el a változtatást
+    
         if (!$authUser || $authUser->role !== User::ROLE_SUPERADMIN) {
         return response()->json(['HIBA' => 'Nincs jogosultsága ehhez a művelethez!'], 403);
         }
 
         $user = User::find($request->user_id);
 
-    // Ha a felhasználó már user, nincs mit változtatni
+    
         if ($user->role === User::ROLE_USER) {
         return response()->json(['message' => 'A felhasználó már nem admin.'], 400);
         }
 
-    // Szuperadmin jogot ne lehessen elvenni
+    
         if ($user->role === User::ROLE_SUPERADMIN) {
         return response()->json(['HIBA' => 'Szuperadmin jogosultság nem vonható vissza!'], 403);
         }
 
-    // Visszaállítás sima user szerepre
+    
         $user->role = User::ROLE_USER;
         $user->save();
 
@@ -203,26 +203,7 @@ class AuthController extends Controller
         return response()->json(['message' => 'Felhasználó törölve lett.']);
        
        
-        try {
-            $request->validate([
-                'email' => 'required|email',
-                'password' => 'required',
-            ]);
-    
-            if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-                $user = Auth::user();
-                $token = $user->createToken('auth_token')->plainTextToken;
-    
-                return response()->json([
-                    'access_token' => $token,
-                    'token_type' => 'Bearer',
-                ]);
-            }
-    
-            return response()->json(['message' => 'Invalid credentials'], 401);
-        } catch (\Exception $e) {
-            return response()->json(['message' => 'Error logging in: ' . $e->getMessage()], 500);
-        }
+        
     }
 
 }

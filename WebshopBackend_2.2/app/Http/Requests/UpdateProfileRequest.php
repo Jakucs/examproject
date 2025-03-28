@@ -18,8 +18,8 @@ class UpdateProfileRequest extends FormRequest
     {
         return [
 
-            'first_name' => 'nullable|regex:/^[\pL\s\-\']+$/u|max:25', //csak betűket, szóközt, kötőjelet és aposztrófot engedélyez
-            'last_name' => 'nullable|regex:/^[\pL\s\-\']+$/u|max:25', //csak betűket, szóközt, kötőjelet és aposztrófot engedélyez
+            'first_name' => 'nullable|regex:/^[\pL\s\-\']+$/u|max:25', //infonak: csak betűket, szóközt, kötőjelet és aposztrófot engedélyez
+            'last_name' => 'nullable|regex:/^[\pL\s\-\']+$/u|max:25', //infonak: csak betűket, szóközt, kötőjelet és aposztrófot engedélyez
              'birth_date' => [
                 'nullable',
                 'date',

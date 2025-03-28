@@ -16,7 +16,7 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'login' => 'required', // Elfogadunk emailt vagy felhasználónevet
+            'login' => 'required', 
             'password' => 'required',
         ];
     }

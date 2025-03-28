@@ -18,7 +18,7 @@ class EnsureProfileIsComplete
         
         $user = $request->user();
         
-        // Ellenőrizze, hogy a szükséges mezők kitöltésre kerültek-e
+        
         if (is_null($user->last_name) ||
             is_null($user->first_name) ||
             is_null($user->phone_number) || 
