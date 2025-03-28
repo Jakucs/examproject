@@ -14,24 +14,8 @@ class RoleMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, ...$roles)
-    
+    public function handle(Request $request, Closure $next, $role)
     {
-        $user = Auth::user();
-        \Log::info('User Role: ' . $user->role); 
-        \Log::info('Felhasználó: ' . $user->id . ', Szerepkör: ' . $user->role);
-    \Log::info('Engedélyezett szerepek: ' . implode(', ', $roles));
-
-        // Ellenőrzi, hogy a felhasználó szerepe benne van-e a megadott szerepkörök között
-        if (!$user || !in_array($user->role, $roles)) {
-            return response()->json(['error' => 'Nincs jogosultsága ehhez a művelethez!'], 403);
-            
-        }
-        
-        return $next($request);
-    }
-}
-/*{
         $user = Auth::user();
 
         if (!$user || ($role === 'admin' && !$user->isAdmin()) || ($role === 'superadmin' && !$user->isSuperAdmin())) {
@@ -39,4 +23,5 @@ class RoleMiddleware
         }
 
         return $next($request);
-    } */
+    }
+}

@@ -31,7 +31,7 @@ class ProfileController extends Controller
         }
 
         $user->update(['password' => bcrypt($request->new_password)]);
-        return response()->json(['message' => 'A jelszó sikeresen megváltozott. Kérem jelentkezzen be az új jelszóval!']);
+        return response()->json(['message' => 'A jeszó sikeresen megváltozott. Kérem jelentkezzen be az új jelszóval!']);
     }
 
     public function deleteAccount(Request $request)

@@ -9,8 +9,6 @@ use App\Http\Middelware\RoleMiddleware;
 use App\Http\Controllers\OrderController;  
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\EnsureProfileIsComplete;
-use App\Http\Controllers\ImageController;
-use App\Models\Image;
 
 
 Route::get('/user', function (Request $request) {
@@ -18,9 +16,7 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 
-//Route::apiResource('products', ProductController::class); // Viktornak: ugyanazokat a route-okat használja u.n. route model binding 
-Route::get('/products', [ProductController::class, 'index']);
-Route::get('/products/{product}', [ProductController::class, 'show']);
+Route::apiResource('products', ProductController::class); // Viktornak: ugyanazokat a route-okat használja u.n. route model binding 
 
 // Regisztráció, bejelentkezés, kijelentkezés
 Route::post('/register', [AuthController::class, 'register']);
@@ -46,7 +42,12 @@ Route::middleware(['auth:sanctum', 'role:superadmin'])->group(function () {
     Route::post('/set-admin', [AuthController::class, 'setAdmin']);
     Route::get('/users', [AuthController::class, 'listUsers']);
     Route::delete('/users/{id}', [AuthController::class, 'deleteUser']);
+    Route::post('/revoke-admin', [AuthController::class, 'revokeAdmin']);// Admin jogosultság visszavonása
 });
+
+
+    
+
 
 // Kosár
 Route::middleware('auth:sanctum')->group(function () {
@@ -74,6 +75,3 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 
-Route::middleware(['auth:sanctum', 'role:admin|superadmin'])->post('/upload-image', [ImageController::class, 'upload']);
-Route::middleware(['auth:sanctum', 'role:admin|superadmin'])->delete('/delete-image/{id}', [ImageController::class, 'delete']);
-Route::middleware(['auth:sanctum'])->get('/images/{entityType}/{entityId}', [ImageController::class, 'getImages']);

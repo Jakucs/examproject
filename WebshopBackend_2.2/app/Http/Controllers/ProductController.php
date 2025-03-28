@@ -39,10 +39,6 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         
-        if (auth()->user()->role !== 'admin' && auth()->user()->role !== 'superadmin') {
-            return response()->json(['error' => 'Csak admin vagy szuperadmin módosíthat terméket'], 403);
-        }
-    
         $request->validate([
             'name' => 'sometimes|string|max:50',
             'description' => 'sometimes|string|nullable',
@@ -53,7 +49,24 @@ class ProductController extends Controller
             'image' => 'nullable|string|nullable',
         ]);
     
+        if ($request->has('stars') && auth()->user()->role !== 'admin' && auth()->user()->role !== 'superadmin') {
+            return response()->json(['error' => 'Csak admin vagy szuperadmin módosíthatja a csillagozást'], 403);
+        }
+    
         $product->update($request->all());
+    
+        return response()->json($product);
+
+        $product->fill($request->only([
+            'name',
+            'description',
+            'category',
+            'price',
+            'stock',
+            'image'
+        ]));
+    
+        $product->save();
     
         return response()->json([
             'product' => $product,
@@ -61,18 +74,16 @@ class ProductController extends Controller
         ]);
     }
     
-    
     public function destroy(Product $product)
-{
-    // Csak admin vagy szuperadmin törölhet terméket
-    if (auth()->user()->role !== 'admin' && auth()->user()->role !== 'superadmin') {
-        return response()->json(['error' => 'Csak admin vagy szuperadmin törölhet terméket'], 403);
+    {
+        $product->delete();
+        return response()->json([
+            'product'=>$product,
+            'message'=> 'Sikeres törlés!'], 202);
+             
+    
     }
 
-    $product->delete();
 
-    return response()->json([
-        'message' => 'Sikeres törlés!'
-    ], 202);
+
 }   
-}
