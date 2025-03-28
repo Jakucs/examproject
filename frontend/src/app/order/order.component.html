@@ -28,7 +28,7 @@
 
         </div>
         <div class="col-md-2 text-end">
-            <p class="fw-bold">${{cartItem.price}}</p>
+            <p class="fw-bold">€{{cartItem.price}}</p>
         </div>
     </div>
 <hr>
@@ -39,21 +39,34 @@
         <h5 class="card-title mb-4">Rendelés összefoglalás</h5>
         <div class="d-flex justify-content-between mb-3">
             <span>Összesen</span>
-            <span>${{overAmount}}</span>
+            <span>€{{overAmount}}</span>
         </div>
         <div class="d-flex justify-content-between mb-3">
             <span>Szállítás</span>
-            <span>$10.00</span>
+            <span>€10.00</span>
         </div>
         <div class="d-flex justify-content-between mb-3">
             <span>Kedvezmény</span>
-            <span>- $10.00</span>
+            <span>- €10.00</span>
         </div>
         <hr>
         <div class="d-flex justify-content-between mb-4">
             <strong>Összesen</strong>
-            <strong>${{overAmount}}</strong>
+            <strong>€{{overAmount}}</strong>
         </div>
-        <button class="btn btn-primary w-100" (click)="takeOrder()">RENDELÉS LEADÁSA</button>
+        @if(!orderExist){
+            <button class="btn btn-primary w-100" (click)="takeOrder()">RENDELÉS LEADÁSA</button>
+        }
+        <div class="mt-3">
+            <h1>
+                <strong [innerHTML]="successfullMessageFromBackend" id="successfullMessageFromBackend" class="mt-2"></strong>
+            </h1>
+
+            <h1>
+                <strong [innerHTML]="errorMessageFromBackend" id="errorMessageFromBackend" class="mt-2"></strong>
+            </h1>
+        </div>
+        
+
     </div>
 </div>

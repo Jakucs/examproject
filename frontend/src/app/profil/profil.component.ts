@@ -32,7 +32,7 @@ export class ProfilComponent {
       name: [''],
       first_name: ['', [Validators.required, Validators.minLength(2)]],
       last_name: ['', [Validators.required, Validators.minLength(2)]],
-      birth_date: [''],
+      birth_date: [null, [Validators.required, Validators.min(new Date('1900-01-01').getTime()), Validators.max(new Date('2025-12-31').getTime())]],
       phone_number: [''/*, [Validators.pattern(/^\+?\d{7,15}$/)]*/],
       postal_code: ['', [Validators.pattern(/^\d{4,5}$/)]],
       city: ['', Validators.required],

@@ -9,7 +9,7 @@
 
       @if(loggedIn){
 
-      <button type="button" class="btn position-relative" [routerLink]="[{ outlets: { top: ['cart'] } }]" (click)="scrollToTop()">
+      <button type="button" class="btn position-relative" [routerLink]="[{ outlets: { top: ['cart'] } }]" (click)="scrollToTop(); toggleProfile(false);">
         <i class="bi bi-basket3-fill"></i>
         <span class="position-absolute top-0 start-100 translate-middle badge bg-primary">
           {{ cartItemCount }}

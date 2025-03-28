@@ -41,7 +41,7 @@ export class AdminComponent {
   navigateToSuperadminsite(){
     console.log("Navigálás...")
     const role = localStorage.getItem('role')
-    if(role==='superadmin' || role ==='admin'){
+    if(role==='superadmin'){
       this.router.navigate([{ outlets: { admin: ['superadminsite'] } }]);
     }else{
       this.AdminError = true;
