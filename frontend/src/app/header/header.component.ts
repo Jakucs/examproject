@@ -14,7 +14,7 @@ export class HeaderComponent /* implements AfterViewInit ˛*/{
   carousel: any;
 
   ngAfterViewInit() {
-    // Inicializáljuk a Bootstrap carousel-t Angularon belül
+    // ezzel inicializáljuk a Bootstrap carousel-t Angularon belül
     this.carousel = new bootstrap.Carousel(document.querySelector('#header'), {
       interval: 4000,
       ride: 'carousel'

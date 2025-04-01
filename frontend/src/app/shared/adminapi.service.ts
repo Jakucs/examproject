@@ -13,6 +13,7 @@ export class AdminapiService {
   ) { }
   productsURL = 'http://localhost:8000/api/products'
   usersURL = 'http://localhost:8000/api/users'
+  ordersURL = 'http://localhost:8000/api/orders'
   setAdminURL = 'http://localhost:8000/api/set-admin'
 
   getProducts(){
@@ -57,5 +58,10 @@ export class AdminapiService {
     const headers = this.authapi.makeHeader();
     const url = this.usersURL + "/" + id;
     return this.http.delete(url, { headers })
+  }
+
+  getOrders(){
+    const headers = this.authapi.makeHeader();
+    return this.http.get(this.ordersURL, { headers })
   }
 }

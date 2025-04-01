@@ -20,6 +20,7 @@ export class ProfilComponent {
   successfullProfilDataChanged: boolean = false;
   errorProfilDataChanged = false;
   errorMessageFromBackend = "";
+  showErrorCard: boolean = false;
 
   constructor(
     private authapi: AuthapiService,
@@ -70,10 +71,12 @@ export class ProfilComponent {
         this.successfullProfilDataChanged = true;
         this.errorProfilDataChanged = false;
         this.loadUserData();
+        this.router.navigate([{ outlets: { top: ['order'] } }]);
       },
       (error) => {
         console.error('Hiba történt mentés közben: ', error);
         this.errorProfilDataChanged = true;
+        this.showErrorCard = true;
         this.errorMessageFromBackend = `
         <span class="order-error">Hiba történt az adatok megadása során!</span> <hr>
         ${error.error.message}

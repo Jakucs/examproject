@@ -7,20 +7,21 @@
     </a>
     <div class="order-lg-2">
 
-      @if(loggedIn){
-
+      @if(loggedIn && !showAdminPage){
       <button type="button" class="btn position-relative" [routerLink]="[{ outlets: { top: ['cart'] } }]" (click)="scrollToTop(); toggleProfile(false);">
         <i class="bi bi-basket3-fill"></i>
         <span class="position-absolute top-0 start-100 translate-middle badge bg-primary">
           {{ cartItemCount }}
         </span>
       </button>
+      <!-- <---KEDVENCEK
       <button type="button" class="btn position-relative">
         <i class="bi bi-heart-fill"></i>
         <span class="position-absolute top-0 start-100 translate-middle badge bg-primary">2</span>
       </button>
+    -->
+    
 
-    }
     <!--Keresőgomb mindig megjelenik-->
       <button type="button" class="btn position-relative dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" (click)="scrollToProducts()">
         <i class="bi bi-search"></i>
@@ -37,6 +38,7 @@
         </div>--> <!--<----- állandóan megjelenő keresési javaslat. -->
 
       </div>
+    }
     </div>
     <!--Keresőgomb vége-->
 
@@ -46,6 +48,10 @@
 
     <div class="collapse navbar-collapse order-lg-1" id="navMenu">
       <ul class="navbar-nav mx-auto text-center">
+
+        @if(!showAdminPage){
+
+        
         <li class="nav-item px-2 py-2">
           <a class="nav-link text-uppercase text-dark" href="#header" (click)="toggleProfile(false)">főoldal</a>
         </li>
@@ -67,31 +73,32 @@
      </a>
       }
         </li>
+    }
+
       </ul>
     </div>
     </div>
 
-    @if(!loggedIn){
 
-    <button type="button" class="btn btn-primary belepesgomb" [routerLink]="[{ outlets: { top: ['login'] } }]" (click)="scrollToTop()">
+<div class="d-flex align-items-center">
+
+
+    @if(!loggedIn && !loginComponentShow){
+    <button type="button" class="btn btn-primary belepesgomb ms-3" [routerLink]="[{ outlets: { top: ['login'] } }]" (click)="scrollToTop(); showLoginComponent(true)">
       Belépés
     </button>
-
   }
 
   @if(loggedIn){
-
     <h3><i class="bi bi-person-check-fill"></i></h3>
     <p class="ms-2">Bejelentkezve mint: <strong>{{ userName }}</strong></p>
-
   <button type="button" class="btn btn-primary ms-3 kilepesgomb" [routerLink]="[{ outlets: { top: ['logout'] } }]" (click)="toggleProfile(false)">
     Kilépés
   </button>
-
   }
 
     <!--nyelv választás dropdown menü KEZDETE-->
-    <div class="btn-group dropdown-center">
+    <div class="btn-group dropdown-center" style="margin-right: 500px;">
       <button type="button" class="btn btn-light dropdown-toggle ms-3 me-3" data-bs-toggle="dropdown" aria-expanded="false">
         {{selectedLang}}
       </button>
@@ -100,7 +107,7 @@
         <li><a class="dropdown-item" href="#" (click)="changeWord('HU')">HU</a></li>
       </ul>
     </div>
-    
+  </div>
    <!--nyelv választás dropdown menü VÉGE-->
    <!-- <---- PopperJS volt szükséges hozzá, amit telepítettem -->
 

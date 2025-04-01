@@ -5,3 +5,7 @@ h1 {
     font-size: 2.5rem; /* Nagyobb betűméret */
     font-weight: bold; /* Félkövér szöveg */
   }
+
+  .cartProductText{
+    padding-top: 50px !important;
+  }

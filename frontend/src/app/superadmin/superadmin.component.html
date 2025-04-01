@@ -1,4 +1,4 @@
-<h1>SZUPERADMIN FELÜLET</h1>
+<h1 style="margin-top: 200px;">SZUPERADMIN FELÜLET</h1>
 
 
 <div class="ms-3 mt-3 position-relative">
@@ -7,7 +7,7 @@
     </button>
   -->
     <div>
-    <button type="button" class="backToAdmin btn btn-secondary position-absolute top-0 end-0 me-3"  (click)="backToAdmin()">
+    <button type="button" class="backToAdmin btn btn-secondary btn-sm top-0 end-0 me-3"  (click)="backToAdmin()">
       <p>Vissza az adminfelületre</p>
       </button>
     </div>
@@ -69,11 +69,11 @@
 
 
   <!-- Modal -->
-  <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">
+          <h1 class="modal-title fs-5" id="ModalLabel">
 
           </h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -128,23 +128,41 @@
             <!--Felhasználók-->
     <h3 class="ms-3 mt-3">Adatbázisban lévő felhasználók:</h3>
 
-    <table class="table table-striped ">
+        <!--SEARCHBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAR-->
+        <button type="button" class="btn position-relative dropdown-toggle ms-3" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="bi bi-search"></i>
+        </button>
+        
+        <div class="search-container dropdown-menu">
+          <input type="text" class="form-control search-input" placeholder="Keresés..." [(ngModel)]="searchUserText" (ngModelChange)="onSearchChange()">
+    
+          <!--<div class="suggestions">
+            <div class="suggestion-item">
+              <i class="fas fa-history"></i>
+              Wireless Headphones
+          </div>
+          </div>--> <!--<----- állandóan megjelenő keresési javaslat. -->
+        </div>
+        <!--VEGEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE-->
+
+    <table class="table table-striped ms-3 mt-5">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Név</th>
-                <th>Email</th>
-                <th>Jelszó</th>
+                <th class="d-none d-md-table-cell">Email</th>
+                <th class="d-none d-md-table-cell">Jelszó</th>
                 <th>Szerep</th>
             </tr>
         </thead>
         <tbody>
             @for(user of userList; track user;){
+              @if(user.name.toLowerCase().includes(searchQuery.toLowerCase())){
                 <tr>
                     <td>{{user.id}}</td>
                     <td>{{user.name}}</td>
-                    <td>{{user.email}}</td>
-                    <td>{{user.password}}</td>
+                    <td class="d-none d-md-table-cell">{{user.email}}</td>
+                    <td class="d-none d-md-table-cell">{{user.password}}</td>
                     <td>{{user.role}}</td>
                     <td>
                       @if(!(user.role==='superadmin')){
@@ -165,6 +183,7 @@
 
                 </tr>
             }
+          }
         </tbody>
     </table>
             <!--Felhasználók lekérése vége-->

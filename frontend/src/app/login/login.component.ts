@@ -4,11 +4,12 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthapiService } from '../shared/authapi.service';
 import { AppComponent } from '../app.component';
 import { HttpErrorResponse } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, FormsModule, RouterLink],
+  imports: [ReactiveFormsModule, FormsModule, RouterLink, CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -23,6 +24,8 @@ export class LoginComponent {
 
   loggedIn = false;
   errorMessageFromBackend!: any;
+  loginForm !: FormGroup;
+  showErrorCard: boolean = false;
 
 
 
@@ -34,7 +37,7 @@ export class LoginComponent {
     this.loggedIn = this.authapi.isLoggedIn();
   }
 
-  loginForm !: FormGroup;
+
 
   login(){
     console.log("Itt következik az azonosítás..");
@@ -66,11 +69,22 @@ export class LoginComponent {
       },
       error: (error: HttpErrorResponse) => {
         console.log("Belépési hiba:",error),
-        this.errorMessageFromBackend = `
-        <p>Hibás felhasználónév vagy jelszó</p> <hr> 
+        this.errorMessageFromBackend = ` <hr>
+        <p>Hibás felhasználónév vagy jelszó</p> 
+        <hr>
+        `;
+        this.showErrorCard = true;
+      }
+
+      /* BANCKEND VÁLASZÁT KIÍRATNI
+            error: (error: HttpErrorResponse) => {
+        console.log("Belépési hiba:",error),
+        this.errorMessageFromBackend = ` <hr>
+        <p>Hibás felhasználónév vagy jelszó</p> <hr>
         ${error.error?.message} </br>  
         `
       }
+      */
     })
   }
 

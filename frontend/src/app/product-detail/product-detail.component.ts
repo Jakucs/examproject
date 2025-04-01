@@ -37,6 +37,7 @@ export class ProductDetailComponent {
       this.stars = parseFloat(params.get('stars') || '0');
       this.price = parseFloat(params.get('price') || '0');
       this.image = params.get('image') || '';
+      this.quantity = Number(params.get('quantity')) || 1; //a product-detail quantity mezője minden új termék megjelnítésekor 1
       console.log('Query paramMap:', params.keys, params);
       console.log("az id: ", this.id)
     });

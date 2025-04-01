@@ -3,6 +3,7 @@ import { AdminapiService } from '../shared/adminapi.service';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { ProductSearchService } from '../shared/product-search.service';
 
 @Component({
   selector: 'app-superadmin',
@@ -22,15 +23,25 @@ export class SuperadminComponent {
   userName!: string;
   superadmin: boolean =false;
 
+  searchUserText: string = '';
+  searchQuery: string = '';
+
   constructor(
     private adminapi: AdminapiService,
+    private productSearchService: ProductSearchService,
     private router: Router
   ){}
 
   ngOnInit(){
+    this.productSearchService.searchQuery$.subscribe(query => {
+      this.searchQuery = query;
+    });
     this.getUsers();
   }
 
+  onSearchChange(){
+    this.productSearchService.updateSearchQuery(this.searchUserText)
+  }
 
   getUsers(){
     this.adminapi.getUsers().subscribe({

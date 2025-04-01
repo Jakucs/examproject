@@ -3,17 +3,19 @@ import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, FormControl, 
 import { AuthapiService } from '../shared/authapi.service';
 import { Router, RouterLink } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule, FormsModule],
+  imports: [ReactiveFormsModule, FormsModule, CommonModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
   registerForm!: FormGroup;
   errorMessageFromBackend!: any;
+  showErrorCard: boolean = false;
 
   constructor(
     private builder: FormBuilder,
@@ -69,13 +71,24 @@ export class RegisterComponent {
       },
       error: (error: HttpErrorResponse) => {
         console.log('Regisztrációs hiba:', error);
+        this.showErrorCard = true;
+        this.errorMessageFromBackend = `<hr>
+        <p>Valós email cím feltétel!</p> <hr> 
+        <p>Jelszó minimum 8 karakter! Kisbetűt és számot is tartalmazzon!</p> <hr>
+        `
+      }
 
+      /* JÓ BACKEND ÜZENET
+            error: (error: HttpErrorResponse) => {
+        console.log('Regisztrációs hiba:', error);
+        this.showErrorCard = true;
         this.errorMessageFromBackend = `
         <p>Valós email cím feltétel!</p> <hr> 
         <p>Jelszó minimum 8 karakter! Kisbetűt és számot is tartalmazzon!</p> <hr> 
         ${error.error?.message} </br>  
         `
       }
+      */
     })
   }
 

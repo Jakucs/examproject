@@ -3,7 +3,14 @@ font-weight: bold;
 color: #ff0000;
 }
 
-#successfullMessageFromBackend{
-  font-weight: bold;
-  color: #8c00ff;
+.successfull-card{
+  border: 1px solid green;
+  padding: 5px;
+  border-radius: 8px;
+  max-width: 300px;
+  color: green;
+}
+
+.row.cart-item .col-md-2.text-end p {
+  margin-right: 20px !important;
 }

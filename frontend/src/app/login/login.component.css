@@ -1,3 +1,22 @@
 #errorMessageFromBackend{
     color: red;
 }
+
+.belepesgomb{
+    background-color: var(--pink)!important;
+    color: #fff!important;
+    border-color: var(--pink)!important;
+    transition: background-color 0.3s ease;
+}
+
+.belepesgomb:active{
+    background-color: rgb(44, 44, 245)!important;
+    border-color: rgb(197, 240, 41)!important;
+  }
+
+  .error-card {
+    border: 1px solid red;
+    padding: 5px;
+    border-radius: 8px;
+    max-width: 300px;
+}

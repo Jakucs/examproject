@@ -1,16 +1,16 @@
 @if(!loggedIn){
 
-    <h1 class="ms-2">Belépés</h1>
+    <h1 class="ms-5">Belépés</h1>
 
-    <form [formGroup]="loginForm" (submit)="login()" class="ms-2">
+    <form [formGroup]="loginForm" (submit)="login()" class="ms-5">
 
         <div class="form-group">
             <label for="login" class="form-label">Felhasználónév vagy email cím</label>
-            <input type="text" id="login" formControlName="login" class="form-control">
+            <input type="text" id="login" formControlName="login" class="form-control" style="max-width: 300px;">
         </div>
         <div class="form-group">
             <label for="password" class="form-label">Jelszó</label>
-            <input type="password" id="password" formControlName="password" class="form-control">
+            <input type="password" id="password" formControlName="password" class="form-control" style="max-width: 300px;">
             <h6 class="mt-2">Az adataidat soha nem osztjuk meg mással</h6>
             <label>
                 <input class = "mt-2" type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Emlékezz rám
@@ -18,13 +18,13 @@
 
         </div>
         <div>
-            <button type="submit" class="btn btn-primary mb-4">Belépés</button>
+            <button type="submit" class="btn btn-primary mb-4 belepesgomb">Belépés</button>
             <button type ="button" class="btn btn-secondary ms-2 mb-4" (click)="navigateToRegister()">
                 Regisztráció
             </button>
         </div>
 
-        <div>
+        <div class= "bootstrapTries" [ngClass]="{'error-card': showErrorCard}">
             <strong [innerHTML]="errorMessageFromBackend" id="errorMessageFromBackend"></strong>
         </div>
         <div class="mt-3"></div>

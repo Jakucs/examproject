@@ -39,12 +39,17 @@ export class AppComponent {
   userName: string = ''; //bejelentkezett felhasználó neve alapból ''
   cartItemCount: number = 0; //User kosara alapból 0
   searchText: string = ''; // keresőstring alapból ''
+  loginComponentShow: boolean = false;
 
   constructor(
     private authapi: AuthapiService,
     private cartService: CartapiService,
     private productSearchService: ProductSearchService
   ){}
+
+  showLoginComponent(show: boolean){
+    this.loginComponentShow = show
+  }
 
   toggleProfile(show: boolean) {
     this.showProfile = show;

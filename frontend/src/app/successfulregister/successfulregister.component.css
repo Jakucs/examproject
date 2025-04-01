@@ -1,0 +1,11 @@
+.belepesgomb{
+    background-color: var(--pink)!important;
+    color: #fff!important;
+    border-color: var(--pink)!important;
+    transition: background-color 0.3s ease;
+}
+
+.belepesgomb:active{
+    background-color: rgb(44, 44, 245)!important;
+    border-color: rgb(197, 240, 41)!important;
+  }

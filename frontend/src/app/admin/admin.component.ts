@@ -3,6 +3,7 @@ import {FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminapiService } from '../shared/adminapi.service';
 import { Router } from '@angular/router';
 import { AppComponent } from '../app.component';
+import { ProductSearchService } from '../shared/product-search.service';
 
 @Component({
   selector: 'app-admin',
@@ -13,7 +14,9 @@ import { AppComponent } from '../app.component';
 })
 export class AdminComponent {
   showTable = false;
+  showOrderTable = false;
   productList: any[] = [];
+  orderList: any[] = [];
   id!: number;
   name!: string;
   price!: number;
@@ -23,19 +26,44 @@ export class AdminComponent {
   stock!: number;
   image!: string;
 
+  orderId!: number;
+  order_user_name!: string;
+  status!: string;
+  orderDate!: Date
+  orderedProducts: any[] = [];
+  userOrderedDatas: any[] =[];
+
   AdminError: any = false;
+  searchProductText: string = '';
+  searchQuery: string = '';
 
   editMode = false;
 
   constructor(
     private adminapi: AdminapiService,
+    private productSearchService: ProductSearchService,
     private router: Router,
     private app: AppComponent,
   ){}
 
+  onSearchChange(){
+    this.productSearchService.updateSearchQuery(this.searchProductText)
+  }
 
   toggleTable(){
     this.showTable = !this.showTable
+  }
+
+  toggleOrderTable(){
+    this.showOrderTable = !this.showOrderTable
+  }
+
+  hiddenUserTable(){
+    this.showTable = false;
+  }
+
+  hiddenOrderTable(){
+    this.showOrderTable = false;
   }
 
   navigateToSuperadminsite(){
@@ -49,7 +77,11 @@ export class AdminComponent {
   }
 
   ngOnInit(){
+    this.productSearchService.searchQuery$.subscribe(query => {
+      this.searchQuery = query;
+    });
     this.getProducts();
+    this.getOrders();
   }
 
   getProducts(){
@@ -60,6 +92,45 @@ export class AdminComponent {
       },
       error: (error) => {}
     })
+  }
+
+  getOrders(){
+    this.adminapi.getOrders().subscribe({
+      next: (data:any) => {
+        console.log("Rendelések listája: ", data)
+        this.orderList = data;
+      },
+      error: (error) => {}
+    })
+  }
+
+  editOrderStatus(order: any){
+    this.editMode = true
+
+
+    this.orderId = order.id
+    this.order_user_name = order.user.name
+    this.status = order.status
+    this.orderDate = order.created_at
+    this.orderedProducts = order.items
+    this.userOrderedDatas.push({
+      "email": order.user.email,
+      "Keresztnév": order.user.first_name,
+      "Vezetéknév": order.user.last_name,
+      "Születési dátum": order.user.birth_date,
+      "Telefonszám": order.user.phone_number,
+      "Irányítószám": order.user.postal_code,
+      "Város": order.user.city,
+      "Utca": order.user.street,
+      "Házszám": order.user.house_number,
+      "Emelet": order.user.floor,
+      "Ajtó": order.user.door
+    })
+    console.log(this.userOrderedDatas)
+  }
+
+  deleteOrder(id: any){
+
   }
 
   startAdd(){

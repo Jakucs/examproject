@@ -2,26 +2,26 @@
 
 
 
-<h1 class="ms-2">Regisztráció</h1>
+<h1 class="ms-5">Regisztráció</h1>
 
-<form [formGroup]="registerForm" (submit)="register()" class="ms-2">
+<form [formGroup]="registerForm" (submit)="register()" class="ms-5">
 
-    <div class="form-group">
+    <div class="form-group" style="max-width: 300px;">
         <span class="input-group-text">Felhasználónév</span>
         <input type="text" formControlName="name" class="form-control" required>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" style="max-width: 300px;">
         <span class="input-group-text">E-mail</span>
         <input type="text" formControlName="email" class="form-control" required>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" style="max-width: 300px;">
         <span class="input-group-text">Jelszó</span>
         <input type="password" formControlName="password" class="form-control" required>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" style="max-width: 300px;">
         <span class="input-group-text">Jelszó újra</span>
         <input type="password" formControlName="password_confirmation" class="form-control" required>
     </div>
@@ -31,10 +31,10 @@
     </div>
     
     <div>
-        <button type="submit" class="btn btn-primary">Regisztráció</button>
+        <button type="submit" class="btn regisztraciosgomb">Regisztráció</button>
     </div>
     
-    <div class="mt-3">
+    <div class="mt-3 bootstrapTries" [ngClass]="{'error-card': showErrorCard}">
         <strong [innerHTML]="errorMessageFromBackend" id="errorMessageFromBackend"></strong>
     </div>
 

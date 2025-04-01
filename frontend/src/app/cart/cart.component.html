@@ -1,4 +1,4 @@
-<h1><strong>{{ userName }}</strong> kosarának tartalma</h1>
+<h1 class="cartProductText"><strong>{{ userName }}</strong> kosarának tartalma</h1>
 
 @if(cartItems.length > 0){
 
@@ -31,7 +31,7 @@
 
                             </div>
                             <div class="col-md-2 text-end">
-                                <p class="fw-bold">€{{cartItem.price}}</p>
+                                <p class="fw-bold">€{{cartItem.price * cartItem.quantity}}</p>
                                 <button class="btn btn-sm btn-outline-danger" (click)="removeFromCart(cartItem.id)">
                                         <i class="bi bi-trash"></i>
                                 </button>
