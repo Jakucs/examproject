@@ -57,7 +57,7 @@ export class AppComponent {
 
   ngOnInit(){
     this.loggedIn = this.authapi.isLoggedIn();
-    this.userName = this.authapi.getUserName();
+      this.userName = this.authapi.getUserName();
     const role = localStorage.getItem('role')
     this.showAdminPage = ( role === 'admin' || role === 'superadmin');
     this.getCartItemCount();

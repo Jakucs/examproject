@@ -106,8 +106,6 @@ export class AdminComponent {
 
   editOrderStatus(order: any){
     this.editMode = true
-
-
     this.orderId = order.id
     this.order_user_name = order.user.name
     this.status = order.status
@@ -115,18 +113,22 @@ export class AdminComponent {
     this.orderedProducts = order.items
     this.userOrderedDatas.push({
       "email": order.user.email,
-      "Keresztnév": order.user.first_name,
-      "Vezetéknév": order.user.last_name,
-      "Születési dátum": order.user.birth_date,
-      "Telefonszám": order.user.phone_number,
-      "Irányítószám": order.user.postal_code,
-      "Város": order.user.city,
-      "Utca": order.user.street,
-      "Házszám": order.user.house_number,
-      "Emelet": order.user.floor,
-      "Ajtó": order.user.door
+      "first_name": order.user.first_name,
+      "last_name": order.user.last_name,
+      "birth_date": order.user.birth_date,
+      "phone_number": order.user.phone_number,
+      "postal_code": order.user.postal_code,
+      "city": order.user.city,
+      "street": order.user.street,
+      "house_number": order.user.house_number,
+      "floor": order.user.floor,
+      "door": order.user.door
     })
     console.log(this.userOrderedDatas)
+
+    /*
+    KÉNE KÜLDENI A BACKENDNEK A STÁTUSZ MÓDOSÍTÁST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      */
   }
 
   deleteOrder(id: any){

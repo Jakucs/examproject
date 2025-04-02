@@ -87,12 +87,23 @@ export class SuperadminComponent {
       role: this.role
     }
 
-    this.adminapi.updateUser(user).subscribe({
-      next: (data: any) => {
-        console.log(data)
-        this.getUsers();
-      }
-    })
+    if(this.role==='admin'){
+      this.adminapi.createAdmin(user).subscribe({
+        next: (data: any) => {
+          console.log('Admin létrehozva', data);
+          this.getUsers();
+        }
+      });
+    }else if ( this.role === 'user'){
+      this.adminapi.revokeAdmin(user).subscribe({
+        next: (data: any) => {
+          console.log('Admin jog visszavonva', data);
+          this.getUsers();
+        }
+      });
+    }
+
+
   }
 
 

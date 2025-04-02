@@ -73,6 +73,11 @@
      </a>
       }
         </li>
+        <li class="nav-item px-2 py-2">
+          <a class="nav-link text-uppercase text-dark" href="#myorders" [routerLink]="[{ outlets: { top: ['myorders'] } }]" (click)="toggleProfile(false); scrollToTop();">rendeléseim</a>
+        </li>
+        <div>
+      </div>
     }
 
       </ul>
@@ -91,7 +96,11 @@
 
   @if(loggedIn){
     <h3><i class="bi bi-person-check-fill"></i></h3>
-    <p class="ms-2">Bejelentkezve mint: <strong>{{ userName }}</strong></p>
+    @if(userName){
+      <p class="ms-2">Bejelentkezve mint: <strong>{{ userName }}</strong></p>
+    }
+
+
   <button type="button" class="btn btn-primary ms-3 kilepesgomb" [routerLink]="[{ outlets: { top: ['logout'] } }]" (click)="toggleProfile(false)">
     Kilépés
   </button>

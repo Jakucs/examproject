@@ -66,6 +66,7 @@ export class LoginComponent {
         }
 
         this.loginForm.reset()
+        location.reload();
       },
       error: (error: HttpErrorResponse) => {
         console.log("Belépési hiba:",error),

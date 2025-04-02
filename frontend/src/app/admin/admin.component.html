@@ -57,7 +57,10 @@
                       <p>
                         Termék neve: {{orderedProduct.product.name}} <br>
                         Termék ára: {{orderedProduct.product.price}} <br>
-                        
+                        Rendelt mennyiség: {{orderedProduct.quantity}}
+                      </p>
+                    }
+
                         @for(userOrderedData of userOrderedDatas; track userOrderedData){
                         Email cím: {{userOrderedData.email}} <br>
                         Keresztnév: {{userOrderedData.first_name}} <br>
@@ -71,8 +74,7 @@
                         Emelet: {{userOrderedData.floor}} <br>
                         Ajtó: {{userOrderedData.door}}
                       }
-                      </p>
-                    }
+
 
                   
                   </div>
@@ -110,23 +112,12 @@
 
   <h3 class="ms-3 mt-3">Adatbázisban lévő rendelések:</h3>
 
-  <!--SEARCHBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAR-->
-  <button type="button" class="btn position-relative dropdown-toggle ms-3" data-bs-toggle="dropdown" aria-expanded="false">
-    <i class="bi bi-search"></i>
-  </button>
-  
-  <div class="search-container dropdown-menu">
-    <input type="text" class="form-control search-input" placeholder="Keresés..." [(ngModel)]="searchProductText" (ngModelChange)="onSearchChange()">
-  
-  </div>
-  <!--VEGEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE-->
-
-  <table class="table table-striped ms-3 mt-5">
+  <table class="table table-striped ms-3 mt-3">
       <thead>
           <tr>
-              <th>Id</th>
+              <th class="d-none d-md-table-cell">Id</th>
               <th>Felhasználónév</th>
-              <th>Végösszeg</th>
+              <th class="d-none d-md-table-cell">Végösszeg</th>
               <th>Státusz</th>
               <th>Részletek</th>
               <th>Törlés</th>
@@ -134,12 +125,12 @@
       </thead>
       <tbody>
           @for(order of orderList; track order.id){
-
+          
             
               <tr>
-                  <td>{{order.id}}</td>
+                  <td class="d-none d-md-table-cell">{{order.id}}</td>
                   <td>{{order.user.name}}</td>
-                  <td>{{order.total_price}}</td>
+                  <td class="d-none d-md-table-cell">{{order.total_price}}</td>
                   <td>{{order.status}}</td>
                   <td>
                   <button (click)="editOrderStatus(order)"
@@ -154,10 +145,8 @@
                   <i class="bi bi-trash"></i>
                   </button>
                 </td>
-
-              
               </tr>
-          
+            
         }
       </tbody>
   </table>

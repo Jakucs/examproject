@@ -10,29 +10,29 @@
             <!--Rendelt elemek-->
             <div class="card mb-4">
                 <div class="card-body">
-
-
-
-                @for(orderdata of ordersData; track orderdata.id;){
+                    @for(orderdata of ordersData; track orderdata.id) {
                         <div class="row cart-item mb-3">
-                            <div class="col-md-3">
-                                <img [src]="orderdata.image" class="card-img-top" alt="...">
-                            </div>
-                            <div class="col-md-5">
-                                <h5 class="card-title">{{orderdata.name}}</h5>
-                                <p class="text-muted">Kategória: {{orderdata.category}}</p>
-                            </div>
-                            <div class="col-md-2">
+                          <div class="col-md-3">
+                            <img [src]="orderdata.image" class="card-img-top" alt="...">
+                          </div>
+                          <div class="col-md-5">
+                            <h5 class="card-title">{{ orderdata.productName }}</h5>
+                            <p class="text-muted">Kategória: {{ orderdata.category }}</p>
+                          </div>
+                          <div class="col-md-2">
+                          </div>
 
+                          <div class="col cart-item mb-3">
+                                <p class="fw-bold">Összesen: €{{ orderdata.total_price }}</p>
+                                <p class="fw-bold">Megrendelt mennyiség: {{ orderdata.quantity }}</p>
+                                <p class="fw-bold">Státusz: {{ orderdata.status }}</p>
                             </div>
-                            <div class="col-md-2 text-end">
-                                <p class="fw-bold">€{{orderdata.price}}</p>
-                            </div>
-                        </div>
-                    <hr>
-                    }
+                          </div>
 
 
+                        <hr>
+                      }
+                      
                 </div>
             </div>
             <!-- Vissza a főoldalra  -->

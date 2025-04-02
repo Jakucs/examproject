@@ -15,6 +15,7 @@ export class AdminapiService {
   usersURL = 'http://localhost:8000/api/users'
   ordersURL = 'http://localhost:8000/api/orders'
   setAdminURL = 'http://localhost:8000/api/set-admin'
+  revokeAdminURL = 'http://localhost:8000/api/revoke-admin'
 
   getProducts(){
     return this.http.get(this.productsURL)
@@ -47,6 +48,11 @@ export class AdminapiService {
   createAdmin(data: any){
     const headers = this.authapi.makeHeader();
     return this.http.post(this.setAdminURL, data, { headers })
+  }
+
+  revokeAdmin(data: any){
+    const headers = this.authapi.makeHeader();
+    return this.http.post(this.revokeAdminURL, data, { headers })
   }
 
   updateUser(user: any){
