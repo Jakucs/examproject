@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { AuthapiService } from './shared/authapi.service';
 import { ProductsComponent } from './products/products.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
@@ -44,7 +44,8 @@ export class AppComponent {
   constructor(
     private authapi: AuthapiService,
     private cartService: CartapiService,
-    private productSearchService: ProductSearchService
+    private productSearchService: ProductSearchService,
+    private router: Router
   ){}
 
   showLoginComponent(show: boolean){
@@ -57,9 +58,13 @@ export class AppComponent {
 
   ngOnInit(){
     this.loggedIn = this.authapi.isLoggedIn();
-      this.userName = this.authapi.getUserName();
-    const role = localStorage.getItem('role')
-    this.showAdminPage = ( role === 'admin' || role === 'superadmin');
+    this.userName = this.authapi.getUserName();
+    const role = localStorage.getItem('role');
+    const showAdminPage = localStorage.getItem('showAdminPage') === 'true';
+    this.showAdminPage = showAdminPage && (role === 'admin' || role === 'superadmin');
+    if(this.showAdminPage){
+      this.router.navigate([{outlets: { admin: ['adminsite']}}]);
+    }
     this.getCartItemCount();
     this.cartService.fetchCartItemCount();
   }
