@@ -45,7 +45,11 @@ Route::middleware(['auth:sanctum', 'role:superadmin'])->group(function () {
     Route::post('/revoke-admin', [AuthController::class, 'revokeAdmin']);// Admin jogosultság visszavonása
 });
 
-
+//De_activate 
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/users/deactivate', [AuthController::class, 'deactivateUser']);
+    Route::post('/users/activate', [AuthController::class, 'activateUser']);
+});
     
 
 
@@ -73,5 +77,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/profile/password', [ProfileController::class, 'updatePassword']);
     Route::delete('/profile', [ProfileController::class, 'deleteAccount']);
 });
+
+
 
 

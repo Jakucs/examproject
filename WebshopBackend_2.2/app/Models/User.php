@@ -20,7 +20,8 @@ class User extends Authenticatable
         'password',
         'role',
         'first_name', 'last_name', 'birth_date',
-        'phone_number', 'postal_code', 'city', 'street', 'house_number', 'floor', 'door'
+        'phone_number', 'postal_code', 'city', 'street', 'house_number', 'floor', 'door',
+        'is_active'
     ];
     
     protected $casts = [

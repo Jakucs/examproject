@@ -75,6 +75,10 @@ class AuthController extends Controller
         
         $user = Auth::user();
         
+        if (!$user->is_active) {
+            Auth::logout();
+            return response()->json(['error' => 'Nincs engedélye belépni! A fiókja inaktív!'], 403);
+        }
         
         $user->tokens()->delete();
     
@@ -171,7 +175,7 @@ class AuthController extends Controller
     }
 
     
-    $users = User::select('id', 'name', 'email', 'role')->get();
+    $users = User::select('id', 'name', 'email', 'role', 'is_active' ) ->get();
 
     return response()->json($users);
     }
@@ -204,6 +208,58 @@ class AuthController extends Controller
        
        
         
+    }
+
+    public function deactivateUser(Request $request)
+    {
+    $request->validate([
+        'user_id' => 'required|exists:users,id',
+    ]);
+
+    $authUser = Auth::user();
+
+    if (!$authUser || $authUser->role !== User::ROLE_SUPERADMIN) {
+        return response()->json(['HIBA' => 'Nincs jogosultsága ehhez a művelethez!'], 403);
+    }
+
+    $user = User::find($request->user_id);
+
+    if ($user->role === User::ROLE_SUPERADMIN) {
+        return response()->json(['HIBA' => 'Szuperadmin nem inaktiválható!'], 403);
+    }
+
+    if (!$user->is_active) {
+        return response()->json(['message' => 'A felhasználó már inaktív.'], 400);
+    }
+
+    $user->is_active = false;
+    $user->save();
+
+    return response()->json(['message' => 'Felhasználó inaktiválva.', 'user' => $user]);
+    }
+
+    public function activateUser(Request $request)
+    {
+    $request->validate([
+        'user_id' => 'required|exists:users,id',
+    ]);
+
+    $authUser = Auth::user();
+
+    if (!$authUser || $authUser->role !== User::ROLE_SUPERADMIN) {
+        return response()->json(['HIBA' => 'Nincs jogosultsága ehhez a művelethez!'], 403);
+    }
+
+    $user = User::find($request->user_id);
+
+    if ($user->is_active) {
+        return response()->json(['message' => 'A felhasználó már aktív.'], 400);
+    }
+
+    $user->is_active = true;
+    $user->save();
+
+    return response()->json(['message' => 'Felhasználó újraaktiválva.', 'user' => $user]);
     }
 
 }
