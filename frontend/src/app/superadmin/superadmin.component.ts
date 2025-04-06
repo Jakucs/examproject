@@ -21,7 +21,7 @@ export class SuperadminComponent {
   role!: string;
   userId!: number;
   userName!: string;
-  superadmin: boolean =false;
+  superadmin: boolean = false;
 
   searchUserText: string = '';
   searchQuery: string = '';
@@ -31,6 +31,21 @@ export class SuperadminComponent {
     private productSearchService: ProductSearchService,
     private router: Router
   ){}
+
+  toggleUserActive(user: any){
+    user.is_active = !user.is_active;
+
+    if(user.is_active){
+      this.adminapi.onIsActiveStatus(user).subscribe(response=>{
+        console.log("isActive oszlop frissítve", response)
+      })
+    } else{
+      this.adminapi.offIsActiveStatus(user).subscribe(response=>{
+        console.log("isActive oszlop frissítve", response)
+      })
+    }
+
+  }
 
   ngOnInit(){
     this.productSearchService.searchQuery$.subscribe(query => {
@@ -114,7 +129,7 @@ export class SuperadminComponent {
     this.role = user.role
   }
 
-  deleteUser(id: number){
+/* deleteUser(id: number){
     console.log("Törlés...")
     this.adminapi.deleteUser(id).subscribe({
       next: (data: any) => {
@@ -122,7 +137,7 @@ export class SuperadminComponent {
         this.getUsers();
       }
     })
-  }
+  } */
 
   backToAdmin(){
       console.log("Navigálás...")

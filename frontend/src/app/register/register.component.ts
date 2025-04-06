@@ -47,11 +47,11 @@ export class RegisterComponent {
       let registerForm = document.getElementById("registerForm"); // Regisztrációs form azonosítója
   
       navMenu!.addEventListener("shown.bs.collapse", function () {
-          registerForm!.style.marginTop = "470px"; // Beállítod a szükséges margót
+          registerForm!.style.marginTop = "470px"; // Beállítjuk a szükséges margót
       });
   
       navMenu!.addEventListener("hidden.bs.collapse", function () {
-          registerForm!.style.marginTop = "0"; // Visszaállítod az eredeti állapotba
+          registerForm!.style.marginTop = "0"; // Visszaállítjuk az eredeti állapotba
       });
   }); //<----INNEN FOLYTASSAM */
 

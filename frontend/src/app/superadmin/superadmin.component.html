@@ -166,21 +166,27 @@
                     <td>{{user.role}}</td>
                     <td>
                       @if(!(user.role==='superadmin')){
+                        <div class="d-flex align-items-center gap-2">
+
+
                         <button (click)="editUser(user)"
                         class="btn btn-primary"
                         data-bs-toggle="modal" data-bs-target="#editUserModal">
                         <i class="bi bi-pencil"></i>
                         </button>
     
-                        <button (click)="deleteUser(user.id)"
+                        <div class="form-check form-switch">
+                          <input class="form-check-input" type="checkbox" id="active" [checked]="user.is_active" (change)="toggleUserActive(user)">
+                          <label class="form-check-label" for="active">{{user.is_active ? 'Aktív' : 'Inaktív'}}</label>
+                        </div>
+
+                      </div>
+                       <!--<button (click)="deleteUser(user.id)"
                         class="btn btn-danger ms-2">
                         <i class="bi bi-trash"></i>
-                        </button>
+                        </button> -->
                       }
                 </td>
-              
-              
-
                 </tr>
             }
           }

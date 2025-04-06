@@ -4,6 +4,7 @@ import { AdminapiService } from '../shared/adminapi.service';
 import { Router } from '@angular/router';
 import { AppComponent } from '../app.component';
 import { ProductSearchService } from '../shared/product-search.service';
+import { OrderapiService } from '../shared/orderapi.service';
 
 @Component({
   selector: 'app-admin',
@@ -32,6 +33,7 @@ export class AdminComponent {
   orderDate!: Date
   orderedProducts: any[] = [];
   userOrderedDatas: any[] =[];
+  orderStatus!: string;
 
   AdminError: any = false;
   searchProductText: string = '';
@@ -43,8 +45,20 @@ export class AdminComponent {
     private adminapi: AdminapiService,
     private productSearchService: ProductSearchService,
     private router: Router,
+    private orderapi: OrderapiService,
     private app: AppComponent,
   ){}
+
+  saveOrderedDataStatus(id: any){
+    this.orderapi.modifyOrderStatus(id, this.orderStatus).subscribe({
+      next: (data: any) => {
+        console.log(data)
+        this.getOrders();
+      }, error: (error) => {
+        console.log("Hiba")
+      }
+    })
+  }
 
   onSearchChange(){
     this.productSearchService.updateSearchQuery(this.searchProductText)
@@ -52,10 +66,12 @@ export class AdminComponent {
 
   toggleTable(){
     this.showTable = !this.showTable
+    this.AdminError = false;
   }
 
   toggleOrderTable(){
     this.showOrderTable = !this.showOrderTable
+    this.AdminError = false;
   }
 
   hiddenUserTable(){
@@ -111,6 +127,7 @@ export class AdminComponent {
     this.status = order.status
     this.orderDate = order.created_at
     this.orderedProducts = order.items
+    this.orderStatus = order.status
     this.userOrderedDatas.push({
       "email": order.user.email,
       "first_name": order.user.first_name,
@@ -125,14 +142,11 @@ export class AdminComponent {
       "door": order.user.door
     })
     console.log(this.userOrderedDatas)
+    console.log("order státusz: ", this.orderStatus)
 
     /*
     KÉNE KÜLDENI A BACKENDNEK A STÁTUSZ MÓDOSÍTÁST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       */
-  }
-
-  deleteOrder(id: any){
-
   }
 
   startAdd(){

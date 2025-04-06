@@ -14,6 +14,7 @@ export class OrderapiService {
 
   orderURL = 'http://localhost:8000/api/order';
   getOrdersURL = 'http://localhost:8000/api/orders';
+  modifyOrderStatusURL = 'http://localhost:8000/api/orders'
 
   takeOrder(){
     const headers = this.userApi.makeHeader();
@@ -23,5 +24,11 @@ export class OrderapiService {
   getOrder(){
     const headers = this.userApi.makeHeader();
     return this.http.get(this.getOrdersURL, { headers });
+  }
+
+  modifyOrderStatus(id: any, status: string){
+    const headers = this.userApi.makeHeader();
+    const url = this.modifyOrderStatusURL + "/" + id + "/status"
+    return this.http.put(url, { status }, { headers })
   }
 }

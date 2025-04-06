@@ -20,7 +20,7 @@ export class ChangepasswordComponent {
 
   changePasswordForm !: FormGroup
   successfullChangePassword = false;
-  textFromBackend!: string;
+  errorFromBackend: boolean = false;
 
   ngOnInit(){
     this.changePasswordForm = this.builder.group({
@@ -36,11 +36,12 @@ export class ChangepasswordComponent {
         console.log('a szerver válasza: ', response)
         this.changePasswordForm.reset()
         this.successfullChangePassword = true;
-        this.textFromBackend = response.message;
+        this.errorFromBackend = false;
       },
       error: (error) => {
         console.log('Hiba történt: ', error)
-        this.textFromBackend = error.error.message;
+        this.errorFromBackend = true;
+        
       }
     })
   }

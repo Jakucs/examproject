@@ -42,9 +42,9 @@ export class ProductsComponent {
     );
   }
 
-  selectProduct(product: any) {
+/*  selectProduct(product: any) {
     (window as any).selectedProduct = product;
-  }
+  } */
 
 
   getProducts(){

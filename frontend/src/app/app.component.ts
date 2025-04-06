@@ -35,7 +35,7 @@ export class AppComponent {
   showAdminPage: boolean = false; //adminoldal alapértelmezett állása
   showProductDetail: boolean = false;
   showProfile = false; //profilom menüpont alapértelmezett állása
-  selectedLang = 'HU'; //nyelvválasztó dropdown menü alapértelmezett állása
+  // selectedLang = 'HU'; //nyelvválasztó dropdown menü alapértelmezett állása
   userName: string = ''; //bejelentkezett felhasználó neve alapból ''
   cartItemCount: number = 0; //User kosara alapból 0
   searchText: string = ''; // keresőstring alapból ''
@@ -69,9 +69,9 @@ export class AppComponent {
     this.cartService.fetchCartItemCount();
   }
 
-  changeWord(lang: string){
+  /*changeWord(lang: string){
     this.selectedLang = lang;
-  }
+  } */
 
   onSearchChange(){
     this.productSearchService.updateSearchQuery(this.searchText)

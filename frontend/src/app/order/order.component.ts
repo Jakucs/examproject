@@ -46,7 +46,7 @@ export class OrderComponent {
           const termek = cartContect[i].product;
           const productHasQuantity = cartContect[i].quantity;
           this.cartItems.push({
-            ...termek,
+            ...termek, /* IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIITTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT */
             quantity: productHasQuantity
           });
         }
@@ -63,7 +63,7 @@ export class OrderComponent {
     this.orderService.takeOrder().subscribe({
       next: (response: any) => {
         console.log('Rendelés sikeres: ', response);
-        this.showSuccessfullCard = true;
+        this.showSuccessfullCard = true; /* esetleg egyszerűbben is meglehetett volna oldani a stílusozást több "helyszínen" */
         this.orderExist = true;
         this.successfullMessageFromBackend = `
         <hr>

@@ -23,7 +23,7 @@
     
 
     <!--Keresőgomb mindig megjelenik-->
-      <button type="button" class="btn position-relative dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" (click)="scrollToProducts()">
+      <button type="button" class="btn position-relative dropdown-toggle m-lg-3" data-bs-toggle="dropdown" aria-expanded="false" (click)="scrollToProducts()">
         <i class="bi bi-search"></i>
       </button>
       
@@ -73,9 +73,13 @@
      </a>
       }
         </li>
-        <li class="nav-item px-2 py-2">
-          <a class="nav-link text-uppercase text-dark" href="#myorders" [routerLink]="[{ outlets: { top: ['myorders'] } }]" (click)="toggleProfile(false); scrollToTop();">rendeléseim</a>
-        </li>
+        @if(loggedIn){
+          <li class="nav-item px-2 py-2">
+            <a class="nav-link text-uppercase text-dark" href="#myorders" [routerLink]="[{ outlets: { top: ['myorders'] } }]" (click)="toggleProfile(false); scrollToTop();">rendeléseim</a>
+          </li>
+        }
+
+
         <div>
       </div>
     }
@@ -85,7 +89,7 @@
     </div>
 
 
-<div class="d-flex align-items-center">
+<div class="d-flex align-items-center" style="margin-right: 500px;">
 
 
     @if(!loggedIn && !loginComponentShow){
@@ -107,7 +111,7 @@
   }
 
     <!--nyelv választás dropdown menü KEZDETE-->
-    <div class="btn-group dropdown-center" style="margin-right: 500px;">
+    <!-- <div class="btn-group dropdown-center" style="margin-right: 500px;">
       <button type="button" class="btn btn-light dropdown-toggle ms-3 me-3" data-bs-toggle="dropdown" aria-expanded="false">
         {{selectedLang}}
       </button>
@@ -115,7 +119,7 @@
         <li><a class="dropdown-item" href="#" (click)="changeWord('EN')">EN</a></li>
         <li><a class="dropdown-item" href="#" (click)="changeWord('HU')">HU</a></li>
       </ul>
-    </div>
+    </div> -->
   </div>
    <!--nyelv választás dropdown menü VÉGE-->
    <!-- <---- PopperJS volt szükséges hozzá, amit telepítettem -->
@@ -132,7 +136,9 @@
   }
 
   @if(!showAdminPage){
-    <app-header id="header"></app-header>
+    @if(!showProfile){
+      <app-header id="header"></app-header>
+    }
     <router-outlet name="product-detail" id="product-detail"></router-outlet>
     <app-products id="products"></app-products>
     <app-aboutus id="aboutus"></app-aboutus>

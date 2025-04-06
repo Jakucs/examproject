@@ -10,13 +10,10 @@
   <h2 class="ms-3">Rendelések kezelése...</h2>
 </button>
 @if(AdminError){
-<h1 class="ms-3 mt-3">Nem vagy szuperadmin! Nincs jogosultságod felhasználókat kezelni!</h1>
+<h1 class="ms-3 mt-3" style="word-break: break-word;">Nem vagy szuperadmin! Nincs jogosultságod felhasználókat kezelni!</h1>
 }
 
 @if(showOrderTable){
-  
-  
-  
   <!-- Modal -->
   <div class="modal fade" id="operationModal2" tabindex="-1" aria-labelledby="
   ModalLabel" aria-hidden="true">
@@ -41,12 +38,12 @@
                 </div>
                 <div class="mb-3">
                   <label for="category" class="form-label">Státusz</label>
-                  <select class="form-select" id="status" [(ngModel)]="status">
-                    <option value="mealworm">Pending</option>
-                    <option value="cricket">Processing</option>
-                    <option value="grasshopper">Shipped</option>
-                    <option value="dessert">Completed</option>
-                    <option value="other">Cancelled</option>
+                  <select class="form-select" id="status" [(ngModel)]="orderStatus">
+                    <option value="pending">Pending</option>
+                    <option value="processing">Processing</option>
+                    <option value="shipped">Shipped</option>
+                    <option value="completed">Completed</option>
+                    <option value="cancelled">Cancelled</option>
                   </select>
                 </div>
 
@@ -57,7 +54,8 @@
                       <p>
                         Termék neve: {{orderedProduct.product.name}} <br>
                         Termék ára: {{orderedProduct.product.price}} <br>
-                        Rendelt mennyiség: {{orderedProduct.quantity}}
+                        Rendelt mennyiség: {{orderedProduct.quantity}} <br>
+                        státusz: {{orderStatus}}
                       </p>
                     }
 
@@ -73,43 +71,25 @@
                         Házszám: {{userOrderedData.house_number}} <br>
                         Emelet: {{userOrderedData.floor}} <br>
                         Ajtó: {{userOrderedData.door}}
-                      }
-
-
-                  
+                      }                
                   </div>
-                  
-
-
                   <div class="mb-3">
                     <label for="description" class="form-label">Rendelés dátuma: </label> 
                     <p>{{ orderDate }}</p>
                   </div>
             </div>
-
-
-
-
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" 
           data-bs-dismiss="modal">Bezár</button>
           <button type="button" class="btn btn-primary"
           data-bs-dismiss="modal"
-          (click)="saveProduct()">Mentés</button>
+          (click)="saveOrderedDataStatus(orderId)">Mentés</button>
         </div>
       </div>
     </div>
   </div>
             <!---Modal ablak body vége-->
-
-
-
-
-
-
-
-
   <h3 class="ms-3 mt-3">Adatbázisban lévő rendelések:</h3>
 
   <table class="table table-striped ms-3 mt-3">
@@ -120,13 +100,11 @@
               <th class="d-none d-md-table-cell">Végösszeg</th>
               <th>Státusz</th>
               <th>Részletek</th>
-              <th>Törlés</th>
           </tr>
       </thead>
       <tbody>
+
           @for(order of orderList; track order.id){
-          
-            
               <tr>
                   <td class="d-none d-md-table-cell">{{order.id}}</td>
                   <td>{{order.user.name}}</td>
@@ -139,40 +117,12 @@
                   <i class="bi bi-pencil"></i>
                   </button>
                 </td>
-                <td>
-                  <button (click)="deleteOrder(order.id)"
-                  class="btn btn-danger ms-2">
-                  <i class="bi bi-trash"></i>
-                  </button>
-                </td>
               </tr>
             
         }
       </tbody>
   </table>
           <!--Termékek lekérése vége-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 @if(showTable){
@@ -258,10 +208,6 @@
                 </div>
             </div>
             </div>
-
-
-
-
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" 

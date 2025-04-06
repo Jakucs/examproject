@@ -70,4 +70,14 @@ export class AdminapiService {
     const headers = this.authapi.makeHeader();
     return this.http.get(this.ordersURL, { headers })
   }
+
+  onIsActiveStatus(user: any){
+    const headers = this.authapi.makeHeader();
+    return this.http.post(this.usersURL + "/activate", {user_id: user.id}, { headers })
+  }
+
+  offIsActiveStatus(user: any){
+    const headers = this.authapi.makeHeader();
+    return this.http.post(this.usersURL + "/deactivate", {user_id: user.id}, { headers })
+  }
 }

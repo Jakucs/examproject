@@ -36,6 +36,8 @@ export class LogoutComponent {
     localStorage.removeItem('userName');
     localStorage.removeItem('role');
     localStorage.removeItem('userId');
+    localStorage.removeItem('showAdminPage');
+    localStorage.removeItem('showProductDetail');
     this.router.navigate(['/']);
   }
 }
