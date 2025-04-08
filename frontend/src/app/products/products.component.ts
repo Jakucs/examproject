@@ -20,12 +20,14 @@ export class ProductsComponent {
   searchQuery: string = '';
   showProductDetail: boolean = false;
   filteredProducts: any[] = [];
+  existLocalStorage: boolean = false;
 
   constructor(
     private adminapi: AdminapiService,
     private cartService: CartapiService,
     private productSearchService: ProductSearchService,
-    private app: AppComponent
+    private app: AppComponent,
+    private router: Router
   ){}
 
   ngOnInit(){
@@ -68,7 +70,15 @@ export class ProductsComponent {
     return result;
   }
 
+  goToLogin(){
+    this.router.navigate([{outlets: {top: ['login']}}]);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
   addToCart(product: any) {
+    if (localStorage.length === 0){
+      this.goToLogin()
+    }
     if (product && product.id) {
       this.cartService.newCartItem({ product_id: product.id, quantity: 1 }).subscribe({
         next: (data: any) => {
@@ -81,6 +91,7 @@ export class ProductsComponent {
     } else {
       console.error("A termék nem tartalmazza az id mezőt.");
     }
+
     this.cartService.fetchCartItemCount()
   }
 

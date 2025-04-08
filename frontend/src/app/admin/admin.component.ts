@@ -128,6 +128,7 @@ export class AdminComponent {
     this.orderDate = order.created_at
     this.orderedProducts = order.items
     this.orderStatus = order.status
+    this.userOrderedDatas = [];
     this.userOrderedDatas.push({
       "email": order.user.email,
       "first_name": order.user.first_name,

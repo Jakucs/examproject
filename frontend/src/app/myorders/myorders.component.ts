@@ -28,29 +28,31 @@ export class MyordersComponent {
   }
 
   getOrder(){
+    this.ordersData = []; // Töröljük a korábbi adatokat
+  
     this.orderapi.getOrder().subscribe({
       next: (response: any) => {
-        const order = response[0]; // Az első rendelés
-        const items = order.items; // Az összes item
-        
-        items.forEach((item: any, index: any) => {
-          console.log("adatok amiket kapok: ", `Item ${index + 1}:`, item);
-          console.log("Status: ", order.status);
-          console.log("Product Name: ", item.product.name);
-          console.log("Quantity: ", item.quantity);
-    
-          // Pusholjuk a szükséges adatokat az ordersData tömbbe
-          this.ordersData.push({
-            status: order.status,
-            quantity: item.quantity,
-            total_price: order.total_price,
-            productName: item.product.name,
-            image: item.product.image,
-            category: item.product.category
+        response.forEach((order: any) => { // Iterálunk az összes rendelésen
+          const items = order.items;
+  
+          items.forEach((item: any, index: any) => {
+            console.log("adatok amiket kapok: ", `Item ${index + 1}:`, item);
+            console.log("Status: ", order.status);
+            console.log("Product Name: ", item.product.name);
+            console.log("Quantity: ", item.quantity);
+  
+            this.ordersData.push({
+              status: order.status,
+              quantity: item.quantity,
+              total_price: item.price, // Lehet, hogy ezt máshogy kell kezelni
+              productName: item.product.name,
+              image: item.product.image,
+              category: item.product.category
+            });
+  
+            this.alreadyOrdered = true;
+            this.notOrderedYet = false;
           });
-    
-          this.alreadyOrdered = true;
-          this.notOrderedYet = false;
         });
       }
     });

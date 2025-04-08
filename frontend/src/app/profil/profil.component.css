@@ -36,15 +36,7 @@
     
 }
 
-@media (max-width: 600px) { /* 600px vagy kisebb képernyőméret esetén */
-    .form-group {
-        display: block; /* Az elemek egymás alá kerülnek */
-    }
 
-    .input-group-text,
-    .form-control {
-        width: 100%; /* Az elemek teljes szélességűek lesznek */
-    }
-}
+  
 
   /*  image/mainside.jpg  */
