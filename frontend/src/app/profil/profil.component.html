@@ -10,8 +10,8 @@
 <form [formGroup]="userDataForm" class="ms-3 mt-3">
 
     <div class="form-group">
-        <span class="input-group-text" style="max-width: 450px; background-color: #bbbbbb;">Felhasználónév</span>
-        <input type="text" formControlName="name" class="form-control mb-4" readonly style="max-width: 450px;">
+        <span class="input-group-text" style="max-width: 325px; background-color: #bbbbbb;">Felhasználónév</span>
+        <input type="text" formControlName="name" class="form-control mb-4" readonly style="max-width: 325px;">
     </div>
 <!--csak akkor adjuk hozzá az is-invalid osztályt hogyha a : utáni feltétel igaz. Vagyis hogy .invalid: nem ment át a Validáción és .touched már megérintette majd elhagyta.-->
 <!--Tehát az is-invalid classt csak akkor adjuk hozzá, amikor ez a 2 feltétel teljesül.-->
@@ -21,8 +21,8 @@
 <!--A Bootstrap az is-invalid osztályt használja a hibás mezők stílusozására (piros keret, piros szöveg stb.).-->
 <!--DIV -nél, IF-ben ugyanez, ugyanazok a feltételek, a szöveg miatt kell újra ellenőrizni-->
     <div class="form-group">
-        <span class="input-group-text" style="max-width: 450px; background-color: #bbbbbb;">Keresztnév</span>
-        <input type="text" formControlName="first_name" class="form-control mb-4"  style="max-width: 450px;"
+        <span class="input-group-text" style="max-width: 325px; background-color: #bbbbbb;">Keresztnév</span>
+        <input type="text" formControlName="first_name" class="form-control mb-4"  style="max-width: 325px;"
             [ngClass]="{'is-invalid': userDataForm.controls['first_name'].invalid && userDataForm.controls['first_name'].touched}">
             @if(userDataForm.controls['first_name'].invalid && userDataForm.controls['first_name'].touched){
                 <div class="invalid-feedback ms-1">
@@ -32,8 +32,8 @@
         </div>
 
     <div class="form-group">
-        <span class="input-group-text" style="max-width: 450px; background-color: #bbbbbb;">Vezetéknév</span>
-        <input type="text" formControlName="last_name" class="form-control mb-4" style="max-width: 450px;"
+        <span class="input-group-text" style="max-width: 325px; background-color: #bbbbbb;">Vezetéknév</span>
+        <input type="text" formControlName="last_name" class="form-control mb-4" style="max-width: 325px;"
         [ngClass]="{'is-invalid': userDataForm.controls['last_name'].invalid && userDataForm.controls['last_name'].touched}">
         @if(userDataForm.controls['last_name'].invalid && userDataForm.controls['last_name'].touched){
             <div class="invalid-feedback">
@@ -43,8 +43,8 @@
     </div>
 
     <div class="form-group">
-        <span class="input-group-text" style="max-width: 450px; background-color: #bbbbbb;">Születési dátum</span>
-        <input type="date" [min]="'1900-01-01'" [max]="'2100-12-31'" formControlName="birth_date" class="form-control mb-4" style="max-width: 450px;"
+        <span class="input-group-text" style="max-width: 325px; background-color: #bbbbbb;">Születési dátum</span>
+        <input type="date" [min]="'1900-01-01'" [max]="'2100-12-31'" formControlName="birth_date" class="form-control mb-4" style="max-width: 325px;"
         [ngClass]="{'is-invalid': userDataForm.controls['birth_date'].invalid && userDataForm.controls['birth_date'].touched}">
         @if (userDataForm.controls['birth_date'].invalid && userDataForm.controls['birth_date'].touched) {
             <div class="invalid-feedback">
@@ -54,8 +54,8 @@
     </div>
 
     <div class="form-group">
-        <span class="input-group-text" style="max-width: 450px; background-color: #bbbbbb;">Telefonszám (+36)</span>
-        <input type="tel" formControlName="phone_number" class="form-control mb-4" style="max-width: 450px;"
+        <span class="input-group-text" style="max-width: 325px; background-color: #bbbbbb;">Telefonszám (+36)</span>
+        <input type="tel" formControlName="phone_number" class="form-control mb-4" style="max-width: 325px;"
         [ngClass]="{'is-invalid': userDataForm.controls['phone_number'].invalid && userDataForm.controls['phone_number'].touched}">
         @if(userDataForm.controls['phone_number'].invalid && userDataForm.controls['phone_number'].touched){
             <div class="invalid-feedback">
@@ -65,8 +65,8 @@
     </div>
 
     <div class="form-group">
-        <span class="input-group-text" style="max-width: 450px; background-color: #bbbbbb;">irányítószám</span>
-        <input type="number" formControlName="postal_code" class="form-control mb-4" style="max-width: 450px;"
+        <span class="input-group-text" style="max-width: 325px; background-color: #bbbbbb;">irányítószám</span>
+        <input type="number" formControlName="postal_code" class="form-control mb-4" style="max-width: 325px;"
         [ngClass]="{'is-invalid': userDataForm.controls['postal_code'].invalid && userDataForm.controls['postal_code'].touched}">
         @if(userDataForm.controls['postal_code'].invalid && userDataForm.controls['postal_code'].touched){
             <div class="invalid-feedback">
@@ -76,8 +76,8 @@
     </div>
 
     <div class="form-group">
-        <span class="input-group-text" style="max-width: 450px; background-color: #bbbbbb;">Város</span>
-        <input type="text" formControlName="city" class="form-control mb-4" style="max-width: 450px;"
+        <span class="input-group-text" style="max-width: 325px; background-color: #bbbbbb;">Város</span>
+        <input type="text" formControlName="city" class="form-control mb-4" style="max-width: 325px;"
         [ngClass]="{'is-invalid': userDataForm.controls['city'].invalid && userDataForm.controls['city'].touched}">
         @if (userDataForm.controls['city'].invalid && userDataForm.controls['city'].touched) {
             <div class="invalid-feedback">
@@ -87,8 +87,8 @@
     </div>
 
     <div class="form-group">
-        <span class="input-group-text" style="max-width: 450px; background-color: #bbbbbb;">Közterület neve / jellege (pl. Üllői út)</span>
-        <input type="text" formControlName="street" class="form-control mb-4" style="max-width: 450px;"
+        <span class="input-group-text" style="max-width: 325px; background-color: #bbbbbb;">Közterület neve / jellege (pl. Üllői út)</span>
+        <input type="text" formControlName="street" class="form-control mb-4" style="max-width: 325px;"
         [ngClass]="{'is-invalid': userDataForm.controls['street'].invalid && userDataForm.controls['street'].touched}">
         @if (userDataForm.controls['street'].invalid && userDataForm.controls['street'].touched) {
             <div class="invalid-feedback">
@@ -98,8 +98,8 @@
     </div>
 
     <div class="form-group">
-        <span class="input-group-text" style="max-width: 450px; background-color: #bbbbbb;">Házszám</span>
-        <input type="text" formControlName="house_number" class="form-control mb-4" style="max-width: 450px;"
+        <span class="input-group-text" style="max-width: 325px; background-color: #bbbbbb;">Házszám</span>
+        <input type="text" formControlName="house_number" class="form-control mb-4" style="max-width: 325px;"
         [ngClass]="{'is-invalid': userDataForm.controls['house_number'].invalid && userDataForm.controls['house_number'].touched}">
         @if (userDataForm.controls['house_number'].invalid && userDataForm.controls['house_number'].touched) {
             <div class="invalid-feedback">
@@ -108,18 +108,18 @@
         }
     </div>
     <div class="form-group">
-        <span class="input-group-text" style="max-width: 450px; background-color: #bbbbbb;">Emelet</span>
-        <input type="text" formControlName="floor" class="form-control mb-4" style="max-width: 450px;">
+        <span class="input-group-text" style="max-width: 325px; background-color: #bbbbbb;">Emelet</span>
+        <input type="text" formControlName="floor" class="form-control mb-4" style="max-width: 325px;">
     </div>
 
     <div class="form-group">
-        <span class="input-group-text" style="max-width: 450px; background-color: #bbbbbb;">Ajtó</span>
-        <input type="text" formControlName="door" class="form-control mb-4" style="max-width: 450px;">
+        <span class="input-group-text" style="max-width: 325px; background-color: #bbbbbb;">Ajtó</span>
+        <input type="text" formControlName="door" class="form-control mb-4" style="max-width: 325px;">
     </div>
 
     <div class="form-group">
-        <span class="input-group-text" style="max-width: 450px; background-color: #bbbbbb;">E-mail</span>
-        <input type="email" formControlName="email" class="form-control mb-4" style="max-width: 450px;">
+        <span class="input-group-text" style="max-width: 325px; background-color: #bbbbbb;">E-mail</span>
+        <input type="email" formControlName="email" class="form-control mb-4" style="max-width: 325px;">
     </div>
 
     <div class="d-flex">

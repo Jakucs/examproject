@@ -79,6 +79,7 @@ export class ProfilComponent {
         this.showErrorCard = true;
         this.errorMessageFromBackend = `
         <span class="order-error">Hiba történt az adatok megadása során!</span> <hr>
+        <span class="order-error">Érvényes adatokat adjon meg!</span>
         `
       }
     );
