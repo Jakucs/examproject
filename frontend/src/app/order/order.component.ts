@@ -84,9 +84,6 @@ export class OrderComponent {
         this.showGoToProfil = true;
       }
 
-      /*
-        HA NINCS ELÉG STOCK AKKOR IS ÁTIRÁNYÍT A PROFILOM OLDALRA! ÍGY A FELHASZNÁLÓ NEMTUDJA MIVAN!!!!!!!!!!
-      */
 
       /* NEXT: JÓ BACKEND ÜZENET FELHASZNÁLÓNAK ÁTALAKÍTANI
             next: (response: any) => {

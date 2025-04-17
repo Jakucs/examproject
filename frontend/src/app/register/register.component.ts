@@ -20,7 +20,7 @@ export class RegisterComponent {
   constructor(
     private builder: FormBuilder,
     private authapi: AuthapiService,
-    private router: Router // <--- Ez kell ahhoz, hogy navigálni tudjak komponensekre
+    private router: Router
   ) {}
 
   /* 
@@ -42,18 +42,7 @@ export class RegisterComponent {
       password_confirmation: ['']
     })
 
-/*     document.addEventListener("DOMContentLoaded", function () {
-      let navMenu = document.getElementById("navMenu");
-      let registerForm = document.getElementById("registerForm"); // Regisztrációs form azonosítója
-  
-      navMenu!.addEventListener("shown.bs.collapse", function () {
-          registerForm!.style.marginTop = "470px"; // Beállítjuk a szükséges margót
-      });
-  
-      navMenu!.addEventListener("hidden.bs.collapse", function () {
-          registerForm!.style.marginTop = "0"; // Visszaállítjuk az eredeti állapotba
-      });
-  }); //<----INNEN FOLYTASSAM */
+
 
   }
 
